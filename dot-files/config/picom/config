@@ -1,0 +1,48 @@
+# Picom Config Customizations https://config.phundrak.com/picom.html
+experimental-backends = true;
+backend = "glx";
+
+detect-rounded-corners = true;
+active-opacity=1;
+#inactive-opacity=0.95;
+shadow = false;
+inactive-opacity-override = true;
+mark-ovredir-focused = true;
+detect-client-opacity = true;
+refresh-rate = 0
+use-damage = false
+#opacity-rule = [ 
+#	"85:class_g *?= 'gnome-terminal'" 
+#];
+
+# Radius
+#corner-radius= 10;
+#round-borders = 1;
+#rounded-corners-exclude = [
+#  "_NET_WM_WINDOW_TYPE@[0]:a = '_NET_WM_WINDOW_TYPE_DOCK'",
+#  "class_g = 'Code'",
+#  "class_g = 'firefox'"
+#];
+
+# Fading
+fading = true;
+fade-in-step = 0.03
+fade-out-step = 0.03
+#fade-delta = 50
+#fade-in-time = 50
+#fade-out-time = 100
+opacity-rule = [ 
+	"20:class_g = 'Moving'" 
+];
+
+# Fix screen tearing
+vsync = true
+
+# jonaburg/picom Specific
+transition-length = 300
+transition-pow-x = 0.1
+transition-pow-y = 0.1
+transition-pow-w = 0.1
+transition-pow-h = 0.1
+size-transition = true
+spawn-cnter = false

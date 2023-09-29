@@ -1,0 +1,32 @@
+#include ".Xtheme"
+
+!! Xft
+Xft.dpi:                    96
+Xft.antialias:              1
+Xft.rgba:                   rgb
+Xft.autohint:               0
+Xft.hinting:                1
+Xft.hintstyle:              hintfull
+Xft.lcdfilter:              lcddefault
+
+!! Appearance
+URxvt.background:           [98]#1E1E2E
+URxvt.depth:                32
+URxvt.scrollBar:            false
+URxvt.scrollBar_right:      false
+
+
+!! Fonts
+URxvt.font:                 xft:JetBrainsMono Nerd Font Mono:style=Regular:pixelsize=16
+URxvt.boldFont:             xft:JetBrainsMono Nerd Font Mono:style=Bold:pixelsize=16
+URxvt.italicFont:           xft:JetBrainsMono Nerd Font Mono:style=Italic:pixelsize=16
+URxvt.boldItalicFont:       xft:JetBrainsMono Nerd Font Mono:style=BoldItalic:pixelsize=16
+URxvt.lineSpace:            0
+URxvt.letterSpace:          0
+
+!! Border
+URxvt.internalBorder:       0
+URxvt.externalBorder:       0
+
+!! Cursor
+URxvt.cursorBlink:          true

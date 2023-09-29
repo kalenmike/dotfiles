@@ -1,0 +1,53 @@
+alias kns="kubectl_set_namespace"
+alias kng="kubectl_get_namespace"
+alias kgp="kubectl get pods"
+alias kgn="kubectl get nodes"
+alias kl="kubectl_pod_logs"
+alias kc="kubectl_connect"
+alias kgj="kubectl get jobs"
+alias kkja="kubectl delete jobs --all"
+alias kkjc="echo Not implemented"
+alias kdp="kubectl describe pod"
+
+function kubectl_set_namespace(){
+	if [ -z "$1" ]; then
+		echo "kubectl: You must specify a namespace!" >&2
+		return 1
+	fi
+	kubectl config set-context --current --namespace="$1" >/dev/null 2>&1  # Disable command output
+    if [ $? -eq 0 ]; then
+    	echo "kubectl: Namespace set to '$1'"
+	else
+	    echo "kubectl: Failed to set the namespace." >&2  # Print error message to stderr
+	    return 1
+	fi
+	
+}
+
+function kubectl_get_namespace(){
+	namespace=$(kubectl config view --minify --output 'jsonpath={..namespace}' | tr -d '\n')
+	echo "kubectl: Current namespace is '$namespace'"
+}
+
+function kubectl_pod_logs(){
+	if [ -z "$1" ]; then
+		echo "kubectl: You must specify a pod!" >&2
+		return 1
+	fi
+	kubectl logs $1 $2
+}
+
+function kubectl_connect(){
+	if [ -z "$1" ]; then
+		echo "kubectl: You must specify a pod!" >&2
+		return 1
+    fi
+
+	if [ -z "$2" ]; then
+		echo "kubectl: You must specify a command!" >&2
+		return 1
+    fi
+
+    echo "kubectl exec -it $1 $container -- $2"
+    kubectl exec -it "$1" "$3" -- "$2"
+}

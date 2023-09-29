@@ -1,0 +1,864 @@
+
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+; ---------------------------------------------------------
+; GLOBAL COLORS : Use as ${colors.%VAR_NAME%}
+; ---------------------------------------------------------
+background = #EE222222
+background-alt = #444
+
+foreground = #dfdfdf
+foreground-alt = #fff
+
+primary = #EEffffff
+secondary = #e60053
+
+floating = #BB222222
+alert = #bd2c40
+
+; Theme colors
+; ---------------------------------------------------------
+
+; Firefox Orange Theme
+;ffOrange = #fe7701
+;ffOrangeTrans = #88fe7701
+
+; Firefox Green Theme
+;ffGreen = #32CD32
+;ffGreenTrans = #8832CD32
+
+; Firefox Mat Red
+ffRed = #D10028
+ffRedTrans = #88D10028
+
+; Firefox Mat Red
+green-haze = #009777
+green-haze-transparent = #aa009777
+
+; Colors to Apply
+labelFocus = ${colors.green-haze-transparent}
+lableFocusUnderline  = ${colors.green-haze}
+
+; [bar/falcon]
+; ; ---------------------------------------------------------
+; ; OLD BAR : Not In Use
+; ; ---------------------------------------------------------
+; monitor = ${env:MONITOR:}
+; width = 100%
+; height = 27
+; radius = 0
+; fixed-center = true
+
+; ; i3 Reposition bar - prevents error
+; override-redirect = true
+
+; background = ${colors.background}
+; foreground = ${colors.foreground}
+
+; line-size = 3
+; line-color = #f00
+
+; border-size = 4
+; border-color = #00000000
+
+; padding-left = 0
+; padding-right = 0
+
+; module-margin-left = 0
+; module-margin-right = 0
+
+; font-0 = "UbuntuMono Nerd Font Mono:size=10;2"
+; font-1 = "UbuntuMono Nerd Font Mono:style=Bold:size=16;3"
+; font-2 = unifont:fontformat=truetype:size=10:antialias=false;0
+; font-3 = siji:pixelsize=64;1
+; ;Icon Medium
+; font-4 = "UbuntuMono Nerd Font Mono:style=Bold:size:15;3"
+; ;Icon Large
+; font-5 = "UbuntuMono Nerd Font Mono:style=Bold:size=20;4"
+; ;Icon Xtra Large
+; font-6 = "UbuntuMono Nerd Font Mono:style=Bold:size=25;5"
+; ;Icon for Shortcuts
+; font-7 = "UbuntuMono Nerd Font Mono:style=Bold:size=35;8"
+
+; modules-left = powermenu i3
+; modules-center = arrowLeft nautlilusSH flameshotSH date kazamSH codeSH arrowRight
+; modules-right = apache alsa memory cpu battery temperature
+
+; tray-position = right
+; tray-padding = 2
+; ;tray-background = #
+; ;tray-transparent = true
+
+; ;wm-restack = bspwm
+; ;wm-restack = i3
+
+; ;scroll-up = bspwm-desknext
+; ;scroll-down = bspwm-deskprev
+
+; ;scroll-up = i3wm-wsnext
+; ;scroll-down = i3wm-wsprev
+
+; cursor-click = pointer
+; cursor-scroll = ns-resize
+
+[bar/hdmiExternal]
+
+; 1 2 3 4    HH:MM    VOL% MEM% CPU% BAT%
+
+monitor = ${env:MONITOR:}
+width = 100%
+height = 20
+radius = 0
+fixed-center = true
+
+background = #00000000
+foreground = #FFFFFF
+
+line-size = 2
+line-color = #000000
+
+border-size = 4
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = "UbuntuMono Nerd Font Mono:size=10;2"
+font-1 = "UbuntuMono Nerd Font Mono:style=Bold:size=16;3"
+font-2 = unifont:fontformat=truetype:size=10:antialias=false;0
+font-3 = siji:pixelsize=64;1
+;Icon Medium
+font-4 = "UbuntuMono Nerd Font Mono:style=Bold:size:15;3"
+;Icon Large
+font-5 = "UbuntuMono Nerd Font Mono:style=Bold:size=20;4"
+;Icon Xtra Large
+font-6 = "UbuntuMono Nerd Font Mono:style=Bold:size=21;4"
+;Icon for Shortcuts
+font-7 = "UbuntuMono Nerd Font Mono:style=Bold:size=35;8"
+font-8 = "UbuntuMono Nerd Font Mono:size=8;2"
+
+modules-left = i3sunset
+modules-center = date
+modules-right = alsa memory cpu battery
+
+tray-position = none
+
+[bar/sunset]
+; ---------------------------------------------------------
+; PRIMARY BAR : Always active
+; ---------------------------------------------------------
+;
+; ---------------------------------------------------------
+; 1 2 3 4               HH:MM     VOL% MEM% CPU% BAT% TRAY
+; ---------------------------------------------------------
+
+monitor = ${env:MONITOR:}
+width = 100%
+height = 20
+radius = 0
+fixed-center = true
+
+background = #CC000000
+foreground = #FFFFFF
+
+line-size = 2
+line-color = #000000
+
+border-size = 4
+border-color = #CC000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = "UbuntuMono Nerd Font Mono:size=10;2"
+font-1 = "UbuntuMono Nerd Font Mono:style=Bold:size=16;3"
+font-2 = unifont:fontformat=truetype:size=10:antialias=false;0
+font-3 = siji:pixelsize=64;1
+;Icon Medium
+font-4 = "UbuntuMono Nerd Font Mono:style=Bold:size:15;3"
+;Icon Large
+font-5 = "UbuntuMono Nerd Font Mono:style=Bold:size=20;4"
+;Icon Xtra Large
+font-6 = "UbuntuMono Nerd Font Mono:style=Bold:size=21;4"
+;Icon for Shortcuts
+font-7 = "UbuntuMono Nerd Font Mono:style=Bold:size=35;8"
+font-8 = "UbuntuMono Nerd Font Mono:size=8;2"
+
+modules-left = i3sunset
+modules-center = date
+modules-right = alsa memory cpu battery
+
+tray-position = right
+tray-padding = 2
+tray-background = #CC000000
+;tray-transparent = true NO LONGER IN USE
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+; [bar/sunsetBACKUP]
+; ; ---------------------------------------------------------
+; ; PRIMARY BAR : Always active
+; ; ---------------------------------------------------------
+; ;
+; ; ---------------------------------------------------------
+; ; 1 2 3 4               HH:MM     VOL% MEM% CPU% BAT% TRAY
+; ; ---------------------------------------------------------
+
+; monitor = ${env:MONITOR:}
+; width = 100%
+; height = 20
+; radius = 0
+; fixed-center = true
+
+; background = #00000000
+; foreground = #FFFFFF
+
+; line-size = 2
+; line-color = #000000
+
+; border-size = 4
+; border-color = #00000000
+
+; padding-left = 0
+; padding-right = 0
+
+; module-margin-left = 0
+; module-margin-right = 0
+
+; font-0 = "UbuntuMono Nerd Font Mono:size=10;2"
+; font-1 = "UbuntuMono Nerd Font Mono:style=Bold:size=16;3"
+; font-2 = unifont:fontformat=truetype:size=10:antialias=false;0
+; font-3 = siji:pixelsize=64;1
+; ;Icon Medium
+; font-4 = "UbuntuMono Nerd Font Mono:style=Bold:size:15;3"
+; ;Icon Large
+; font-5 = "UbuntuMono Nerd Font Mono:style=Bold:size=20;4"
+; ;Icon Xtra Large
+; font-6 = "UbuntuMono Nerd Font Mono:style=Bold:size=21;4"
+; ;Icon for Shortcuts
+; font-7 = "UbuntuMono Nerd Font Mono:style=Bold:size=35;8"
+; font-8 = "UbuntuMono Nerd Font Mono:size=8;2"
+
+; modules-left = i3sunset
+; modules-center = date
+; modules-right = alsa memory cpu battery
+
+; tray-position = right
+; tray-padding = 2
+; tray-background = #00009777
+; ;tray-transparent = true NO LONGER IN USE
+
+; cursor-click = pointer
+; cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-underline = ${colors.secondary}
+
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+; [module/bspwm]
+; type = internal/bspwm
+
+; label-focused = %index%
+; label-focused-background = ${colors.background-alt}
+; label-focused-underline= ${colors.primary}
+; label-focused-padding = 2
+
+; label-occupied = %index%
+; label-occupied-padding = 2
+
+; label-urgent = %index%!
+; label-urgent-background = ${colors.alert}
+; label-urgent-padding = 2
+
+; label-empty = %index%
+; label-empty-foreground = ${colors.foreground-alt}
+; label-empty-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+; [module/i3]
+; type = internal/i3
+; format = <label-state> <label-mode>
+; index-sort = true
+; wrapping-scroll = false
+; strip-wsnumbers = true
+
+; ; Only show workspaces on the same output as the bar
+; ;pin-workspaces = true
+
+; label-mode-padding = 2
+; label-mode-foreground = #000
+; label-mode-background = ${colors.primary}
+
+; ; focused = Active workspace on focused monitor
+; label-focused = %index% %name%
+; label-focused-background = ${colors.background-alt}
+; label-focused-underline= ${colors.primary}
+; label-focused-padding = 2
+
+; ; unfocused = Inactive workspace on any monitor
+; label-unfocused = %index% %name%
+; label-unfocused-padding = 2
+
+; ; visible = Active workspace on unfocused monitor
+; label-visible = %index% %name%
+; label-visible-background = ${self.label-focused-background}
+; label-visible-underline = ${self.label-focused-underline}
+; label-visible-padding = ${self.label-focused-padding}
+
+; ; urgent = Workspace with urgency hint set
+; label-urgent = %index%
+; label-urgent-background = ${colors.alert}
+; label-urgent-padding = 2
+
+; ; Separator in between workspaces
+; ; label-separator = |
+
+[module/i3sunset]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+strip-ws-numbers = true
+pin-workspaces = true
+
+; Replace with Icons
+ws-icon-0 = 1:Desktop;
+ws-icon-1 = 2:Firefox;
+ws-icon-2 = 3:VS Code;
+ws-icon-3 = 4:Terminals;
+ws-icon-4 = 5:Nautilus;
+ws-icon-5 = 6:Slack;
+ws-icon-6 = 7:Spotify;
+ws-icon-7 = 8:External;
+ws-icon-8 = 9:;
+ws-icon-9 = 10:Private;﫸
+ws-icon-default = 
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000000
+label-mode-background = #FFFFFF
+
+; ACTIVE WORKSPACE ON FOCUSED MONITOR
+;label-focused = %index% %name%
+label-focused-font = 9
+label-focused = %index% %{T7}%icon%%{T1}
+label-focused-background = ${colors.labelFocus}
+label-focused-underline= ${colors.lableFocusUnderline}
+label-focused-padding = 2
+
+; INACTIVE WORKSPACE ON ANY MONITOR
+label-unfocused-font = 9
+;label-unfocused = %index% %name%
+label-unfocused = %index% %{T7}%icon%%{T1}
+label-unfocused-padding = 2
+
+; ACTIVE WORKSPACE ON UNFOCUSED MONITOR
+;label-visible = %index% %name%
+label-visible-font = 9
+label-visible = %index% %{T7}%icon%%{T1}
+;label-visible-background = ${self.label-focused-background}
+label-visible-background = #33009777
+;label-visible-underline = ${self.label-focused-underline}
+label-visible-underline = ${colors.lableFocusUnderline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+;label-urgent = %index%
+label-urgent = %index% %{T7}%icon%%{T1}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+; [module/mpd]
+; type = internal/mpd
+; format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+; icon-prev = 
+; icon-stop = 
+; icon-play = 
+; icon-pause = 
+; icon-next = 
+
+; label-song-maxlen = 25
+; label-song-ellipsis = true
+
+; [module/xbacklight]
+; type = internal/xbacklight
+
+; format = <label> <bar>
+; label = BL
+
+; bar-width = 10
+; bar-indicator = |
+; bar-indicator-foreground = #fff
+; bar-indicator-font = 2
+; bar-fill = ─
+; bar-fill-font = 2
+; bar-fill-foreground = #9f78e1
+; bar-empty = ─
+; bar-empty-font = 2
+; bar-empty-foreground = ${colors.foreground-alt}
+
+; [module/backlight-acpi]
+; inherit = module/xbacklight
+; type = internal/backlight
+; card = intel_backlight
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+;format-prefix = " "
+format-prefix = "%{T7}%{T1}"
+;format-prefix = " "
+format-background = #696ebf
+format-foreground = ${colors.primary}
+;format-underline = ${colors.primary}
+label = %percentage:2%%
+;format-margin = 2
+format-padding = 2
+
+[module/memory]
+type = internal/memory
+interval = 2
+format = <ramp-used> <label>
+;format-prefix = " "
+format-prefix = "%{T7}%{T1}"
+format-background = #009777
+format-padding = 2
+format-prefix-foreground = ${colors.primary}
+format-underline = ${colors.primary}
+label = %percentage_used%%
+
+ramp-used-0 = %{F#FFFFFF}
+ramp-used-1 = %{F#FFFFFF}
+ramp-used-2 = %{F#FF9800}
+ramp-used-3 = %{F#e01212}
+
+; [module/wlan]
+; type = internal/network
+; interface =wlp3s0 
+; interval = 3.0
+
+; format-connected = <ramp-signal> <label-connected>
+; format-connected-underline = #9f78e1
+; label-connected = %essid%
+
+; format-disconnected =
+; ;format-disconnected = <label-disconnected>
+; ;format-disconnected-underline = ${self.format-connected-underline}
+; ;label-disconnected = %ifname% disconnected
+; ;label-disconnected-foreground = ${colors.foreground-alt}
+
+; ramp-signal-0 = 
+; ramp-signal-1 = 
+; ramp-signal-2 = 
+; ramp-signal-3 = 
+; ramp-signal-4 = 
+; ramp-signal-foreground = ${colors.foreground-alt}
+
+; [module/eth]
+; type = internal/network
+; interface = 
+; interval = 3.0
+
+; format-connected-underline = #55aa55
+; format-connected-prefix = " "
+; format-connected-prefix-foreground = ${colors.foreground-alt}
+; label-connected = %local_ip%
+
+; format-disconnected =
+; ;format-disconnected = <label-disconnected>
+; ;format-disconnected-underline = ${self.format-connected-underline}
+; ;label-disconnected = %ifname% disconnected
+; ;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+;date-alt = " %A %{F#FF9800}%{T2}%d%{F-}%{T-} %B"
+; Sunset
+;date-alt = "%A %{F#fe7701}%{T2}%d%{F-}%{T-} %B"
+; Green
+date-alt = "%A %{F#009777}%{T2}%d%{F-}%{T-} %B"
+
+;%{F#ff6600}
+
+time =  %{T2}%H:%M%%{T-}
+time-alt = 
+
+;format-prefix = %{T6}%{T-}
+format-prefix-foreground = #ffffff
+;format-underline = ${colors.primary}
+;format-background = ${colors.floating}
+
+label = %date% %time%
+
+; [module/pulseaudio]
+; type = internal/pulseaudio
+
+; format-volume = <label-volume> <bar-volume>
+; label-volume = VOL %percentage%%
+; label-volume-foreground = ${root.foreground}
+
+; label-muted = 🔇 muted
+; label-muted-foreground = #666
+
+; bar-volume-width = 10
+; bar-volume-foreground-0 = #55aa55
+; bar-volume-foreground-1 = #55aa55
+; bar-volume-foreground-2 = #55aa55
+; bar-volume-foreground-3 = #55aa55
+; bar-volume-foreground-4 = #55aa55
+; bar-volume-foreground-5 = #f5a70a
+; bar-volume-foreground-6 = #ff5555
+; bar-volume-gradient = false
+; bar-volume-indicator = |
+; bar-volume-indicator-font = 2
+; bar-volume-fill = ─
+; bar-volume-fill-font = 2
+; bar-volume-empty = ─
+; bar-volume-empty-font = 2
+; bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/alsa]
+type = internal/alsa
+
+;format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume>
+format-volume-background = #2587cc
+label-volume-margin = 1
+label-muted-margin = 1
+label-volume = %{T7}ﱛ%{T-} %percentage%%
+label-volume-foreground = #FFFFFF
+
+format-muted-prefix = "%{T7}%{T-} "
+format-muted-foreground = #e01212
+;label-muted = 
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 98
+
+format-full-margin = 2
+format-charging-margin = 2
+format-discharging-margin = 2
+
+format-charging = <animation-charging> <label-charging>
+;format-charging-underline = ${colors.primary}
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = #FF9800
+
+format-full-prefix = 
+format-full-prefix-foreground = ${colors.primary}
+format-full-foreground = ${colors.primary}
+format-full-underline = 
+format-full-font = 5
+;label-full = 
+format-full = "ﮣ " 
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
+animation-charging-7 = 
+animation-charging-8 = 
+animation-charging-9 = 
+animation-charging-10 = 
+
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 300
+
+animation-discharging-0 = %{T7}%{T1}
+animation-discharging-1 = %{T7}%{T1}
+animation-discharging-2 = %{T7}%{T1}
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
+
+; [module/temperature]
+; type = internal/temperature
+; thermal-zone = 0
+; warn-temperature = 100
+
+; format = <ramp> <label>
+; ;format-underline = ${colors.primary}
+; format-warn = <ramp> <label-warn>
+; format-warn-underline = ${self.format-underline}
+
+; format-margin = 2
+
+; label = %temperature-c%
+; label-warn = %temperature-c%
+; label-warn-foreground = ${colors.secondary}
+
+; ramp-0 = %{F#3792cb}%{T5}%{T-}
+; ramp-1 = %{F#3792cb}%{T5}%{T-}
+; ramp-2 = %{F#FF9800}%{T5}%{T-}
+; ramp-3 = %{F#e01212}%{T5}%{T-}
+; ramp-foreground = ${colors.foreground-alt}
+
+; [module/powermenu]
+; type = custom/menu
+
+; format-spacing = 0
+; format-margin = 1
+; format-background = ${colors.floating}
+
+; label-open = %{T6}⏻%{T-}
+; label-open-foreground = #fff
+; label-open-padding = 2
+; label-open-expand-right = false
+; label-close-padding = 2
+; label-close = %{T6}%{T-}
+; label-close-background = ${colors.floating}
+; label-close-foreground = #fff
+; label-separator = 
+; label-separator-foreground = #
+
+; ;Menu Options on Open [Close label is set above]
+; ;Option 1
+; menu-0-0-background = #BB92CD28
+; menu-0-0-foreground = #FFFFFF
+; menu-0-0-margin = 1
+; menu-0-0-padding  = 2
+; menu-0-0 = %{T5}%{T-}
+; menu-0-0-exec = i3lock -i ~/Pictures/background/lockscreen.png -f -e
+; ;Option 2
+; menu-0-1-background = #BBFF9800
+; menu-0-1-foreground = #FFFFFF
+; menu-0-1-margin = 0
+; menu-0-1-padding  = 2
+; menu-0-1 = %{T6}%{T-}
+; menu-0-1-exec = "i3-nagbar -t warning -f 'UbuntuMono Nerd Font Mono' -m 'Ready to Log Out?' -B 'Log Out' 'i3-msg exit'"
+; ;Option 3
+; menu-0-2-background = #BBFF5607
+; menu-0-2-foreground = #FFFFFF
+; menu-0-2-margin = 1
+; menu-0-2-padding  = 2
+; menu-0-2 = %{T6}漏%{T-}
+; menu-0-2-exec = "i3-nagbar -t warning -f 'UbuntuMono Nerd Font Mono' -m 'Reboot Falcon?' -B 'Yes' 'sudo reboot'"
+; ;Option 4
+; menu-0-3-background = #BBF6412D
+; menu-0-3-foreground =#FFFFFF
+; menu-0-3-margin = 0
+; menu-0-3-padding  = 2
+; menu-0-3 = %{T6}⏻%{T-}
+; menu-0-3-exec = "i3-nagbar -t error -f 'UbuntuMono Nerd Font Mono' -m '9Your shutting down Falcon?' -B 'Yes' 'sudo poweroff'"
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
+
+;Custom Modules
+
+; [module/backlight]
+; ;https://github.com/jaagr/polybar/wiki/Module:-backlight
+
+; type = internal/backlight
+
+; ; Use the following command to list available cards:
+; ; $ ls -1 /sys/class/backlight/
+; card = intel_backlight
+
+; ; Available tags:
+; ;   <label> (default)
+; ;   <ramp>
+; ;   <bar>
+; format = <label>
+; format-foreground = ${colors.foreground}
+; format-background = ${colors.background}
+
+; ; Available tokens:
+; ;   %percentage% (default)
+; label = %percentage%%
+
+; ; Only applies if <ramp> is used
+; ramp-0 = 🌕
+; ramp-1 = 🌔
+; ramp-2 = 🌓
+; ramp-3 = 🌒
+; ramp-4 = 🌑
+
+; ; Only applies if <bar> is used
+; bar-width = 10
+; bar-indicator = |
+; bar-fill = ─
+; bar-empty = ─
+
+
+;#####################CUSTOM
+
+;[module/mic]
+; type = custom/text
+; content = %{T8}%{T-}
+; label-padding = 2
+; click-left = nautilus &
+; content-padding = 2
+; content-foreground = ${colors.primary}
+; content-background = ${colors.floating}
+;amixer sset Capture toggle
+
+; [module/demo]
+; type = custom/ipc
+; hook-0 = echo foobar
+; hook-1 = date +%s
+; hook-2 = whoami
+; initial = 1
+; click-left = polybar-msg -p %pid% hook demo 1
+; click-right = polybar-msg -p %pid% hook demo 2
+; double-click-left = polybar-msg -p %pid% hook demo 3
+
+; [module/nautlilusSH]
+; type = custom/text
+; content = %{T8}%{T-}
+; label-padding = 2
+; click-left = nautilus &
+; content-padding = 2
+; content-foreground = ${colors.primary}
+; content-background = ${colors.floating}
+
+; [module/codeSH]
+; type = custom/text
+; content = %{T8}%{T-}
+; click-left = code &
+; content-padding = 2
+; content-font = 2
+; content-foreground = ${colors.primary}
+; content-background = ${colors.floating}
+
+; [module/flameshotSH]
+; type = custom/text
+; content = %{T7}%{T-}
+; click-left = flameshot
+; content-padding = 2
+; content-font = 2
+; content-foreground = ${colors.primary}
+; content-background = ${colors.floating}
+
+; [module/kazamSH]
+; type = custom/text
+; content = %{T7}%{T-}
+; click-left = kazam &
+; content-padding = 2
+; content-font = 2
+; content-foreground = ${colors.primary}
+; content-background = ${colors.floating}
+
+; [module/arrowLeft]
+; type = custom/text
+; content = "%{T8} %{T-}"
+; content-font = 2
+; content-padding = 0
+; content-foreground = ${colors.floating}
+
+; [module/arrowRight]
+; type = custom/text
+; content = "%{T8} %{T-}"
+; content-font = 2
+; content-padding = 0
+; content-foreground = ${colors.floating}
+
+; [module/apache]
+; type = custom/script
+; exec = /home/ace/Developer/bash/polybar/apache-status.sh
+; click-left = /home/ace/Developer/bash/web-server.sh status
+; interval = 1800
+; label =  "%output%"
+; label-padding = 2

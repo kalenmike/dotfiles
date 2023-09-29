@@ -1,0 +1,2 @@
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

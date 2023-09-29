@@ -1,0 +1,52 @@
+function ultra() {
+    # Quickly navigate to ultralytics folders
+    local ULTRALYTICS_ROOT="/home/ace/Projects/ultralytics"
+    
+    # Define associative array for repo folder mappings
+    declare -A repo_folders=(
+        [home]="/"
+        [web]="/repos/hub-web"
+        [server]="/repos/hub-server"
+        [site]="/repos/public-site"
+        [sdk]="/repos/hub-sdk"
+        [qa]="/qa"
+        [yolov8]="/repos/ultralytics"
+    )
+    
+    # Check if a valid repository argument is provided
+    if [ $# -eq 0 ] || [ -z "${repo_folders[$1]}" ]; then
+        echo -n "Usage: ultra ["
+        for option in "${!repo_folders[@]}"; do
+            echo -n "$option|"
+        done
+        echo -n "help]"
+        echo
+        return 1
+    fi
+    
+    local folder="${repo_folders[$1]}"
+    cd "$ULTRALYTICS_ROOT$folder" || return 1
+}
+
+alias uw="ultra web"
+alias us="ultra server"
+alias ups="ultra site"
+alias uqa="ultra qa"
+alias uy="ultra yolov8"
+alias uk="ultra sdk"
+
+
+organization_route="~/Projects/ultralytics"
+
+organization_bookmarks=( 
+        "/repos/hub-web"
+        "/repos/hub-server"
+        "/repos/public-site"
+        "/repos/hub-sdk"
+        "/repos/ultralytics"
+        "/qa"
+        "/"
+    )
+
+alias u="$( IFS=$'\n'; echo ${organization_bookmarks[*]})"
+alias uff="find $organization_route | fzf"

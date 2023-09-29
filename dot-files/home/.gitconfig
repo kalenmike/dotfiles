@@ -1,0 +1,26 @@
+[user]
+	name = Kalen Michael
+	email = kalenmike@gmail.com
+[alias]
+	lst = log -n 1
+	st = status
+	undo-commit = reset --soft HEAD~1
+	alias = !git config --global -l | grep alias
+	delete-branch = push origin --delete
+	ba = branch -a
+	local-commits = log --branches --not --remotes --pretty=oneline
+	bm = branch
+	merged = branch --merged
+	add-deleted = ls-files --deleted | xargs git add
+	clean-local = !git branch --merged | grep -vwE 'main|develop' | xargs git branch -d 2>/dev/null && echo "Local branches cleaned." || echo "No local branches to clean."
+	prune-local = !git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
+[fetch]
+	prune = true
+[rerere]
+	enabled = false
+[config]
+	clean = branch
+[advice]
+	addIgnoredFile = false
+[init]
+	defaultBranch = main
