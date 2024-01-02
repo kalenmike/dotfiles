@@ -56,7 +56,5 @@ setopt prompt_subst
 
 # Load required modules
 autoload -U add-zsh-hook
-autoload -U colors
-colors
 PROMPT="$secondary┌──${debian_chroot:+($debian_chroot)}[$primary%1~$secondary]\$(dir_summary)\$(custom_git_info)%(1j.%j.) 
 $secondary└─\$(is_venv)$primary> %f"

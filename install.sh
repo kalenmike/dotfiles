@@ -24,26 +24,26 @@ if [ ! -d "$CONFIG_DIR" ]; then
 fi
 
 link_all_files(){
-	source=$1
-	target=$2
-	# Loop through files in the source folder.
-	for file in "$source"/*; do
-		# Extract the file name without the path.
-		filename=$(basename "$file")
-		
-		source_file=$(realpath $SCRIPT_DIR/$file)
-		target_file=$target/$filename
-		
-		if [ -e "$target_file" ]; then
-			mv "$target_file" "$target_file-bkp"
-			echo "File exists, creating backup: $target_file-bkp"
-		fi
+    source=$1
+    target=$2
+    # Loop through files in the source folder.
+    for file in "$source"/*; do
+        # Extract the file name without the path.
+        filename=$(basename "$file")
+        
+        source_file=$(realpath $SCRIPT_DIR/$file)
+        target_file=$target/$filename
+        
+        if [ -e "$target_file" ]; then
+            mv "$target_file" "$target_file-bkp"
+            echo "File exists, creating backup: $target_file-bkp"
+        fi
 
-		# Create a symlink in the target folder.
-		ln -s "$SCRIPT_DIR/$file" "$target/$filename"
-		
-		echo "Created symlink: $target_file -> $source_file"
-	done
+        # Create a symlink in the target folder.
+        ln -s "$SCRIPT_DIR/$file" "$target/$filename"
+        
+        echo "Created symlink: $target_file -> $source_file"
+    done
 }
 
 link_all_files "./dot-files/home" $HOME_DIR

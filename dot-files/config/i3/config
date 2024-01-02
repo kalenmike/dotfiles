@@ -52,6 +52,8 @@ bindsym $mod+Shift+q kill
 
 # Application fuzzy search
 bindsym $mod+d exec rofi -show drun -theme /home/ace/.config/rofi/themes/launcher.rasi
+# Bookmarks fuzzy search
+bindsym $mod+b exec $scriptPath/firefox-bookmarks.sh -f $scriptPath/ff-bookmarks.txt
 
 # Change focus
 bindsym $mod+h focus left
@@ -66,8 +68,8 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # Split h = horizontal, v = vertical
-bindsym $mod+b split h
-bindsym $mod+v split v
+bindsym $mod+Shift+minus split h
+bindsym $mod+minus split v
 
 # Fullscreen active container
 bindsym $mod+f fullscreen toggle
@@ -137,6 +139,7 @@ assign [class="Spotify"] $ws6
 for_window [class="Spotify"] move to workspace $ws6
 assign [class="Steam"] $ws9
 assign [class="Postman" window_type="normal"] $ws10
+assign [class="obs" window_type="normal"] $ws9
 
 # Resize window, mouse enabled
 mode "resize" {
@@ -166,6 +169,7 @@ for_window [class="blueman-manager"] floating enable
 # Keep firefox picture in picture on top of all worksapces
 for_window [instance="Toolkit" class="Firefox"] sticky enable
 for_window [title="^floatme$"] floating enable
+for_window [class="^floatme$"] floating enable, resize set 1700px 900px, move position center
 for_window [class="Pavucontrol"] floating enable, sticky enable
 for_window [class="Blueman-manager"] floating enable, sticky enable
 for_window [window_type="dialog"] sticky enable
@@ -179,6 +183,7 @@ for_window [class="SimpleScreenRecorder"] floating enable
 for_window [class="Thunar" window_type="normal"] floating enable, resize set 1700px 900px
 for_window [class="Gedit" window_type="normal"] floating enable, resize set 900px 900px
 for_window [title="Event Tester"] floating enable
+for_window [class="thunderbird"] floating enable
 
 #Borders
 default_border pixel 1
@@ -214,7 +219,7 @@ bindsym Control+Print exec $scriptPath/launch/launch-scrot.sh
 bindsym $mod+Tab workspace back_and_forth
 
 # App Switcher
-bindsym Mod1+Tab exec rofi -show window -theme /home/ace/.config/rofi/themes/switcher.rasi -window-format "{c}  {t}"
+bindsym Mod1+Tab exec rofi -show window -theme /home/ace/.config/rofi/themes/switcher.rasi -window-format "[{w}]  {c}  {t}"
 
 #Launch favourites
 bindsym $mod+x exec $scriptPath/favourite_apps.sh

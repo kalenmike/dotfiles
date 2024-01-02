@@ -31,3 +31,4 @@ PATH="$HOME/AppImages:$HOME/.npm/bin:$PATH"
 
 # Welcome message
 /home/ace/Projects/scripts/launch/launch-gui.sh
+. "$HOME/.cargo/env"

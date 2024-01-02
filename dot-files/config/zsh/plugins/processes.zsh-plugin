@@ -1,0 +1,13 @@
+function psa(){
+    if [ -n "$1" ]; then
+        first=$1
+        grep_process="[${first:0:1}]${first:1}"
+        if [ -n "$2" ]; then
+            grep_process="$grep_process ${@:2}"
+        fi
+        echo "Matching : '$grep_process'"
+
+        ps aux | grep "$grep_process"
+    fi
+}
+

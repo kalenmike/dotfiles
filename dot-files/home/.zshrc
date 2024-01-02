@@ -1,11 +1,20 @@
-
 zstyle :compinstall filename '/home/ace/.zshrc'
 zstyle ':completion:*' insert-tab false
+# Enable case insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 autoload -Uz compinit && compinit
+
+setopt MENU_COMPLETE
 
 # Add support for LS_COLORS
 export LS_COLORS="$(vivid generate ayu)"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Add keybindings for fzf
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+# Add zoxide
+eval "$(zoxide init zsh)"
 
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
@@ -22,6 +31,8 @@ plugins=(
   ultralytics
   zsh-syntax-highlighting
   kubectl
+  processes
+  nvm
 )
 
 # Load plugins
@@ -41,13 +52,18 @@ alias python="python3" # Allow scripts to run python2 [system has python3]
 alias dupterm='nohup kitty >&/dev/null &' # Duplicate Terminal with Working Directory
 alias ducks="du -cks * | sort -rn | head" # Get 10 biggest files/folders
 alias ra="ranger"
-alias pysrc="if [ -d "venv" ]; then source venv/bin/activate; else echo 'Error: venv folder not found in the current directory.'; fi"
+# alias pysrc="if [ -d "venv" ]; then source venv/bin/activate; else echo 'Error: venv folder not found in the current directory.'; fi"
 alias tree='find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"'
 alias chat="/home/ace/Projects/playground/chatgpt-cli/chat"
 alias vim=nvim
 alias sd=fuzzy_dirs
 alias fd=fuzzy_files
 alias bat=batcat
+alias bart="export BARTIB_FILE='/home/ace/Projects/activities.bartib' && bartib"
+alias ssh-add="ssh_add_overwrite"
+alias zz="z -"
+alias s="kitty +kitten ssh kalen@ssh.ultralytics.com"
+
 # Custom Functions
 # --------------------------------------------------------------------
 function restart-jobs(){
@@ -73,6 +89,30 @@ function fuzzy_files(){
     file="$(find ~ -type d \( -name node_modules -o -name venv -o -name Trash \) -prune -o -type f | fzf --preview 'batcat --color=always {}' --query="$1")"
     if [ -n "$file" ];then
         vim $file
+    fi
+}
+
+function pysrc() {
+    if [ -d "venv" ]; then
+        source venv/bin/activate
+    else
+        echo 'Virtual environment folder not found in the current directory.'
+        echo 'Do you want to create a new venv? (y/n): '
+        read choice
+        if [ "$choice" = "y" ]; then
+            python -m venv venv
+            source venv/bin/activate
+            echo 'Virtual environment created and activated.'
+        else
+            echo 'Virtual environment not created.'
+        fi
+    fi
+}
+
+function ssh_add_overwrite(){
+    /usr/bin/ssh-add "$@"
+    if [ $? -eq 0 ]; then
+        polybar-msg action ssh hook 0 > /dev/null 2>&1
     fi
 }
 
