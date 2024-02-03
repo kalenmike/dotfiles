@@ -14,7 +14,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 # Add zoxide
-eval "$(zoxide init zsh)"
+# eval "$(zoxide init zsh)"
 
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
@@ -55,14 +55,14 @@ alias ra="ranger"
 alias tree='find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"'
 alias chat="/home/ace/Projects/playground/chatgpt-cli/chat"
 alias v=nvim
-alias sd=fuzzy_dirs
-alias fd=fuzzy_files
+alias f=fuzzy_dirs
+alias ff=fuzzy_files
 alias bat=batcat
 alias bart="export BARTIB_FILE='/home/ace/Projects/activities.bartib' && bartib"
 alias ssh-add="ssh_add_overwrite"
-alias zz="z -"
 alias s="kitty +kitten ssh kalen@ssh.ultralytics.com"
 alias rbi="/home/ace/Projects/scripts/remove-bg-image.sh && /home/ace/Projects/scripts/launch/launch-bgimage.sh now"
+alias ch=cheat_sheet
 
 # Custom Functions
 # --------------------------------------------------------------------
@@ -78,9 +78,10 @@ function kube-connect() {
 
 function fuzzy_dirs(){
     local dir
-    dir="$(find ~ -type d \( -name node_modules -o -name venv -o -name Trash \) -prune -o -type d | fzf --query=$1)"
+    dir="$(find ~ -type d \( -name node_modules -o -name venv -o -name Trash \) -prune -o -type d | fzf --height 10 --query=$1)"
     if [ -n "$dir" ];then
         cd $dir
+        echo Directory: $dir
     fi
 }
 
@@ -88,7 +89,8 @@ function fuzzy_files(){
     local file
     file="$(find ~ -type d \( -name node_modules -o -name venv -o -name Trash \) -prune -o -type f | fzf --preview 'batcat --color=always {}' --query="$1")"
     if [ -n "$file" ];then
-        vim $file
+        cd $(dirname "$file")
+        nvim $file
     fi
 }
 
@@ -114,6 +116,10 @@ function ssh_add_overwrite(){
     if [ $? -eq 0 ]; then
         polybar-msg action ssh hook 0 > /dev/null 2>&1
     fi
+}
+
+function cheat_sheet(){
+    curl -sS https://cht.sh/$1 | less -R
 }
 
 # Fix navigation
