@@ -1,6 +1,7 @@
 [user]
 	name = Kalen Michael
 	email = kalenmike@gmail.com
+	signingkey = /home/ace/.ssh/id_ed25519.pub
 [alias]
 	lst = log -n 1
 	st = status
@@ -14,6 +15,7 @@
 	add-deleted = ls-files --deleted | xargs git add
 	clean-local = !git branch --merged | grep -vwE 'main|develop' | xargs git branch -d 2>/dev/null && echo "Local branches cleaned." || echo "No local branches to clean."
 	prune-local = !git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
+	history = log --follow --
 [fetch]
 	prune = true
 [rerere]
@@ -26,3 +28,7 @@
 	defaultBranch = main
 [core]
 	editor = vim
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true

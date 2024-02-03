@@ -31,7 +31,7 @@ vim.opt.updatetime = 50
 vim.opt.listchars = "space:·"
 vim.opt.list = true
 
-vim.opt.autochdir = true
+--vim.opt.autochdir = true
 
 vim.opt.cmdheight = 0
 
