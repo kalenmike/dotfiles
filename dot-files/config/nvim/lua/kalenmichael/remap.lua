@@ -14,16 +14,22 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- Allow paste over new selection without losing reference
-vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("x", "<leader>p", [["_dP]], { silent = true, desc = "Paste over selection and keep reference" })
 
 -- Allow copy into clipboard
 -- Copy what is selected
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { silent = true, desc = "Copy selection to clipboard" })
 -- Copy code block or line
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]], { silent = true, desc = "Copy line or block to clipoard" })
 
 -- Start search and replace for current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Make file executable
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
+
+-- Save current file path to clipboard
+vim.keymap.set("n", "<leader>f", function()
+    vim.fn.setreg("+", vim.fn.expand('%:p'))
+end, { noremap = true, silent = true, desc = "Copy filepath to clipboard" })
+

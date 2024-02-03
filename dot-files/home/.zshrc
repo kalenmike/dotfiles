@@ -4,7 +4,7 @@ zstyle ':completion:*' insert-tab false
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 autoload -Uz compinit && compinit
 
-setopt MENU_COMPLETE
+#setopt MENU_COMPLETE
 
 # Add support for LS_COLORS
 export LS_COLORS="$(vivid generate ayu)"
@@ -47,15 +47,14 @@ source "$ZSH/themes/$zsh_theme.zsh-theme"
 # --------------------------------------------------------------------
 alias ll='ls -lhF --color=always --group-directories-first | awk "{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\"\\033[0;0m%0o \\033[0;0m\",k);print}"'
 alias ls="ls -p --group-directories-first --color=always"
-alias c="clear && echo -e \"\\033c\""
+alias c="clear && echo -ne \"\\033c\""
 alias python="python3" # Allow scripts to run python2 [system has python3]
 alias dupterm='nohup kitty >&/dev/null &' # Duplicate Terminal with Working Directory
 alias ducks="du -cks * | sort -rn | head" # Get 10 biggest files/folders
 alias ra="ranger"
-# alias pysrc="if [ -d "venv" ]; then source venv/bin/activate; else echo 'Error: venv folder not found in the current directory.'; fi"
 alias tree='find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"'
 alias chat="/home/ace/Projects/playground/chatgpt-cli/chat"
-alias vim=nvim
+alias v=nvim
 alias sd=fuzzy_dirs
 alias fd=fuzzy_files
 alias bat=batcat
@@ -63,6 +62,7 @@ alias bart="export BARTIB_FILE='/home/ace/Projects/activities.bartib' && bartib"
 alias ssh-add="ssh_add_overwrite"
 alias zz="z -"
 alias s="kitty +kitten ssh kalen@ssh.ultralytics.com"
+alias rbi="/home/ace/Projects/scripts/remove-bg-image.sh && /home/ace/Projects/scripts/launch/launch-bgimage.sh now"
 
 # Custom Functions
 # --------------------------------------------------------------------
