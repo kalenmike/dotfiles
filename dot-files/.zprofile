@@ -8,6 +8,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+export LC_TIME="en_US.UTF-8"
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -29,5 +31,7 @@ fi
 # Append to PATH
 PATH="$HOME/AppImages:$HOME/.npm/bin:$PATH"
 
-# Welcome message
-/home/ace/Projects/scripts/launch/launch-gui.sh
+if [ -z "$TMUX" ];then
+    # Welcome message
+    #/home/ace/Projects/scripts/launch/launch-gui.sh
+fi
