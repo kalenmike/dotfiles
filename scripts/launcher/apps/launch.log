@@ -1,0 +1,91 @@
+
+------------------------------------
+Wed Feb 21 10:13:33 PM CET 2024 Executing configure-displays.sh
+------------------------------------
+Unknown. Applying auto config...
+------------------------------------
+
+------------------------------------
+Wed Feb 21 10:13:33 PM CET 2024 Executing picom.sh
+------------------------------------
+[ 02/21/2024 22:13:33.684 session_init FATAL ERROR ] Another composite manager is already running
+Execution status: Error
+------------------------------------
+
+------------------------------------
+Wed Feb 21 10:13:33 PM CET 2024 Executing bgimage.sh
+------------------------------------
+No running scripts found.
+------------------------------------
+
+------------------------------------
+Wed Feb 21 10:13:33 PM CET 2024 Executing polybar.sh
+------------------------------------
+Switching to new time of day: night
+  -> /home/ace/Pictures/backgrounds/time-pack/night/james-wheeler-InOgamK2cuY-unsplash.jpg
+eDP-1-1
+------------------------------------
+
+------------------------------------
+Wed Feb 21 10:13:33 PM CET 2024 Executing conky.sh
+------------------------------------
+polybar|notice:  Parsing config file: /home/ace/.config/polybar/config.ini
+polybar|notice:  Listening for IPC messages (PID: 2829816)
+conky: no process found
+polybar|notice:  Loading module 'i3' of type 'internal/i3'
+polybar|notice:  Loading module 'closebracket' of type 'custom/text'
+polybar|notice:  Loading module 'openbracket' of type 'custom/text'
+polybar|notice:  Loading module 'tray' of type 'internal/tray'
+polybar|notice:  Loading module 'closebracket' of type 'custom/text'
+polybar|notice:  Loading module 'openbracket' of type 'custom/text'
+polybar|notice:  Loading module 'dunst' of type 'custom/ipc'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'ssh' of type 'custom/ipc'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'nordvpn_simple' of type 'custom/script'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'filesystem' of type 'internal/fs'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'memory' of type 'internal/memory'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'cpu' of type 'internal/cpu'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'battery' of type 'internal/battery'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'pulseaudio' of type 'internal/pulseaudio'
+polybar|notice:  pulseaudio: using default sink alsa_output.pci-0000_00_1f.3.analog-stereo
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'weather' of type 'custom/script'
+polybar|notice:  Loading module 'time' of type 'internal/date'
+polybar|notice:  Loaded 24 modules
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Regular:size=8" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Bold:size=8" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Bold.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Regular:size=10" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Bold:size=10" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Bold.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Regular:size=12" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Bold:size=12" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Bold.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Regular:size=14" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf)
+polybar|notice:  Loaded font "FiraCode Nerd Font:style=Regular:size=8" (name=FiraCode Nerd Font, offset=2, file=/home/ace/.local/share/fonts/FiraCodeNerdFont-Regular.ttf)
+polybar|notice:  Loaded font "FiraCode Nerd Font:style=Regular:size=10" (name=FiraCode Nerd Font, offset=1, file=/home/ace/.local/share/fonts/FiraCodeNerdFont-Regular.ttf)
+polybar|notice:  Loaded font "FiraCode Nerd Font:style=Regular:size=12" (name=FiraCode Nerd Font, offset=2, file=/home/ace/.local/share/fonts/FiraCodeNerdFont-Regular.ttf)
+polybar|notice:  Loaded font "FiraCode Nerd Font:style=Regular:size=14" (name=FiraCode Nerd Font, offset=2, file=/home/ace/.local/share/fonts/FiraCodeNerdFont-Regular.ttf)
+polybar|notice:  Loaded font "FiraCode Nerd Font:style=Regular:size=16" (name=FiraCode Nerd Font, offset=3, file=/home/ace/.local/share/fonts/FiraCodeNerdFont-Regular.ttf)
+polybar|notice:  Loaded font "Noto Color Emoji:scale=10" (name=Noto Color Emoji, offset=1, file=/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf)
+------------------------------------
+
+------------------------------------
+Wed Feb 21 10:13:34 PM CET 2024 Executing keyboard.sh
+------------------------------------
+conky: warning: invalid head index, ignoring head settings
+------------------------------------
+
+------------------------------------
+Wed Feb 21 10:13:34 PM CET 2024 Executing autotile.py
+------------------------------------
+conky: warning: invalid head index, ignoring head settings
+conky: desktop window (22b) is root window
+conky: window type - override
+conky: drawing to created window (0x4400002)
+conky: drawing to double buffer
+conky: forked to background, pid is 2829940
+

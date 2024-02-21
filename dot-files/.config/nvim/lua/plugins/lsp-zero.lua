@@ -23,18 +23,17 @@ return {
 
         lsp_zero.preset('recommend')
         lsp_zero.setup()
-
-        lsp_zero.on_attach(function(client, bufnr)
+        lsp_zero.on_attach(function(_, bufnr)
             -- see :help lsp-zero-keybindings
             -- to learn the available actions
             lsp_zero.default_keymaps({ buffer = bufnr })
             --lsp_zero.buffer_autoformat()
-            --  local opts = {buffer = bufnr}
 
             vim.keymap.set({ 'n', 'x' }, 'gq', function()
                 vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
-            end, opts)
-            vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = bufnr })
+            end, { buffer = bufnr, noremap = true, silent = true, desc = "Format document" })
+            vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = bufnr, desc = "Find references" })
+            vim.keymap.set('n', '<leader>li', '<cmd>LspInfo<cr>', { buffer = bufnr, desc = "Show LSP Info" })
         end)
 
         lsp_zero.set_sign_icons({
@@ -46,7 +45,7 @@ return {
 
         require('mason').setup({})
         require('mason-lspconfig').setup({
-            ensure_installed = {},
+            ensure_installed = { "shfmt" },
             handlers = {
                 lsp_zero.default_setup,
                 lua_ls = function()
@@ -90,6 +89,9 @@ return {
                 --null_ls.builtins.formatting.stylua,
                 null_ls.builtins.diagnostics.eslint_d,
                 null_ls.builtins.formatting.prettier,
+                null_ls.builtins.formatting.shfmt.with({
+                    extra_args = { "-i", "4" }
+                })
             }
         })
     end

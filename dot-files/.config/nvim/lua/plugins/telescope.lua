@@ -11,7 +11,13 @@ return {
     config = function()
         require('telescope').setup({
             defaults = {
-                initial_mode = "insert" }
+                initial_mode = "normal",
+                mappings = {
+                    n = {
+                        ["q"] = require('telescope.actions').close
+                    }
+                },
+            }
         })
 
         local builtin = require('telescope.builtin')
@@ -22,13 +28,13 @@ return {
         end
 
         -- Fuzzy find files in git project or in cwd
-        vim.keymap.set('n', '<leader>pf', project_files, {})
+        vim.keymap.set('n', '<leader>pf', project_files, { desc = "Search project files" })
         -- Fuzzy find in cwd
         vim.keymap.set('n', '<C-p>', builtin.find_files, {})
         -- Fuzzy find with documents containing string
         vim.keymap.set('n', '<leader>ps', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") });
-        end)
-        vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
+        end, { desc = "Search text in project" })
+        vim.keymap.set('n', '<leader>pb', builtin.buffers, { desc = "View open buffers" })
     end
 }

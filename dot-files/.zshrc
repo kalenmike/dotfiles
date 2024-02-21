@@ -63,9 +63,18 @@ alias ssh-add="ssh_add_overwrite"
 alias s="kitty +kitten ssh kalen@ssh.ultralytics.com"
 alias rbi="/home/ace/Projects/scripts/remove-bg-image.sh && /home/ace/Projects/scripts/launch/launch-bgimage.sh now"
 alias ch=cheat_sheet
+alias t="tmux_attach"
+alias m="math"
 
 # Custom Functions
 # --------------------------------------------------------------------
+function math(){
+    set -o noglob
+    echo $(( $@ ))
+    set +o noglob
+}
+
+
 function restart-jobs(){
     PREFIX=$1
     kubectl get jobs --field-selector=status.successful=0 -o custom-columns=":metadata.name" | grep "^${PREFIX}" | awk '{print $1}' | xargs -I {} sh -c "kubectl get job {} -o json | jq 'del(.spec.selector)' |   jq 'del(.spec.template.metadata.labels)' | kubectl replace --force -f - >/dev/null; echo Restarted: {}"
@@ -120,6 +129,13 @@ function ssh_add_overwrite(){
 
 function cheat_sheet(){
     curl -sS https://cht.sh/$1 | less -R
+}
+
+function tmux_attach(){
+    if ! tmux attach; then
+        echo "Starting new tmux session..."
+        tmux new-session
+    fi
 }
 
 # Fix navigation

@@ -127,18 +127,14 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Assign Workspaces:
 assign [class="Slack"] $ws1
-assign [class="Brave-browser-nightly" window_type="normal"] $ws6
-assign [class="Google-chrome" window_type="normal"] $ws9
 assign [class="firefox" instance="Navigator" window_type="normal" ] $ws2
 assign [class="firefox" instance="Navigator" title="(?i)Firefox Private"] $ws9
 for_window [class="firefox" instance="Navigator" title="(?i)Firefox Private"] move to workspace $ws9
-assign [class="Code" window_type="normal"] $ws3
 assign [class="VSCodium" window_type="normal"] $ws3
-# assign [class="Nautilus" window_type="normal" title="[^Preferences]" ] $ws5
 assign [class="Spotify"] $ws6
 for_window [class="Spotify"] move to workspace $ws6
-assign [class="Steam"] $ws9
-assign [class="Postman" window_type="normal"] $ws10
+assign [class="Steam"] $ws7
+assign [class="Postman" window_type="normal"] $ws8
 assign [class="obs" window_type="normal"] $ws9
 
 # Resize window, mouse enabled
@@ -216,7 +212,9 @@ bindsym Shift+Print exec flameshot gui
 bindsym Control+Print exec $scriptPath/launch/launch-scrot.sh
 
 #Add mod tab support between monitors
-bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Tab exec i3-msg focus output next
+# Add mod tab support between current and previous workspace
+#bindsym $mod+Tab workspace back_and_forth
 
 # App Switcher
 bindsym Mod1+Tab exec rofi -show window -theme /home/ace/.config/rofi/themes/switcher.rasi -window-format "[{w}]  {c}  {t}"
