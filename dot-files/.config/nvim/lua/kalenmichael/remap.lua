@@ -33,3 +33,10 @@ vim.keymap.set("n", "<leader>f", function()
     vim.fn.setreg("+", vim.fn.expand('%:p'))
 end, { noremap = true, silent = true, desc = "Copy filepath to clipboard" })
 
+-- Save File
+local function saveAndNotify()
+    vim.cmd('w')
+    vim.notify('File saved', vim.log.levels.INFO)
+end
+
+vim.keymap.set("n", "zz", saveAndNotify, { noremap = true, silent = true, desc = "Save file" })

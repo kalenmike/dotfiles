@@ -1,0 +1,155 @@
+
+------------------------------------
+Wed Feb 21 03:57:58 PM CET 2024 Executing configure-displays.sh
+------------------------------------
+Unknown. Applying auto config...
+------------------------------------
+
+------------------------------------
+Wed Feb 21 03:57:58 PM CET 2024 Executing launch-compton.sh
+------------------------------------
+[ 02/21/2024 15:57:58.528 session_init FATAL ERROR ] Another composite manager is already running
+Execution status: Error
+------------------------------------
+
+------------------------------------
+Wed Feb 21 03:57:58 PM CET 2024 Executing launch-bgimage.sh
+------------------------------------
+Killing running scripts...done.
+------------------------------------
+
+------------------------------------
+Wed Feb 21 03:57:58 PM CET 2024 Executing launch-polybar.sh
+------------------------------------
+Switching to new time of day: afternoon
+  -> /home/ace/Pictures/backgrounds/time-pack/afternoon/lukasz-szmigiel-jFCViYFYcus-unsplash.jpg
+polybar|notice:  Received signal(15): Terminated
+polybar|notice:  Termination signal received, shutting down...
+polybar|warn:  module/i3: Attempting to reconnect socket (reason: Unexpected EOF while reading header)
+eDP-1-1
+------------------------------------
+
+------------------------------------
+Wed Feb 21 03:57:58 PM CET 2024 Executing launch-conky.sh
+------------------------------------
+polybar|notice:  Parsing config file: /home/ace/.config/polybar/config.ini
+conky: received SIGHUP, SIGINT, or SIGTERM to terminate. bye!
+polybar|notice:  Listening for IPC messages (PID: 2610041)
+------------------------------------
+
+------------------------------------
+polybar|notice:  Loading module 'i3' of type 'internal/i3'
+Wed Feb 21 03:57:58 PM CET 2024 Executing swap-keys.sh
+------------------------------------
+conky: warning: invalid head index, ignoring head settings
+------------------------------------
+
+------------------------------------
+Wed Feb 21 03:57:58 PM CET 2024 Executing autotile.py
+------------------------------------
+polybar|notice:  Loading module 'closebracket' of type 'custom/text'
+polybar|notice:  Loading module 'openbracket' of type 'custom/text'
+polybar|notice:  Loading module 'tray' of type 'internal/tray'
+polybar|notice:  Loading module 'closebracket' of type 'custom/text'
+polybar|notice:  Loading module 'openbracket' of type 'custom/text'
+polybar|notice:  Loading module 'dunst' of type 'custom/ipc'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'ssh' of type 'custom/ipc'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'nordvpn_simple' of type 'custom/script'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'filesystem' of type 'internal/fs'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'memory' of type 'internal/memory'
+conky: warning: invalid head index, ignoring head settings
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'cpu' of type 'internal/cpu'
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'battery' of type 'internal/battery'
+conky: desktop window (22b) is root window
+conky: window type - override
+conky: drawing to created window (0x5c00002)
+conky: drawing to double buffer
+conky: forked to background, pid is 2610058
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'pulseaudio' of type 'internal/pulseaudio'
+polybar|notice:  pulseaudio: using default sink alsa_output.pci-0000_00_1f.3.analog-stereo
+polybar|notice:  Loading module 'seperator' of type 'custom/text'
+polybar|notice:  Loading module 'weather' of type 'custom/script'
+polybar|notice:  Loading module 'time' of type 'internal/date'
+polybar|notice:  Loaded 24 modules
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Regular:size=8" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Bold:size=8" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Bold.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Regular:size=10" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Bold:size=10" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Bold.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Regular:size=12" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Bold:size=12" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Bold.ttf)
+polybar|notice:  Loaded font "JetBrainsMono Nerd Font Mono:style=Regular:size=14" (name=JetBrainsMono Nerd Font Mono, offset=2, file=/home/ace/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf)
+polybar|notice:  Loaded font "FiraCode Nerd Font:style=Regular:size=8" (name=FiraCode Nerd Font, offset=2, file=/home/ace/.local/share/fonts/FiraCodeNerdFont-Regular.ttf)
+polybar|notice:  Loaded font "FiraCode Nerd Font:style=Regular:size=10" (name=FiraCode Nerd Font, offset=1, file=/home/ace/.local/share/fonts/FiraCodeNerdFont-Regular.ttf)
+polybar|notice:  Loaded font "FiraCode Nerd Font:style=Regular:size=12" (name=FiraCode Nerd Font, offset=2, file=/home/ace/.local/share/fonts/FiraCodeNerdFont-Regular.ttf)
+polybar|notice:  Loaded font "FiraCode Nerd Font:style=Regular:size=14" (name=FiraCode Nerd Font, offset=2, file=/home/ace/.local/share/fonts/FiraCodeNerdFont-Regular.ttf)
+polybar|notice:  Loaded font "FiraCode Nerd Font:style=Regular:size=16" (name=FiraCode Nerd Font, offset=3, file=/home/ace/.local/share/fonts/FiraCodeNerdFont-Regular.ttf)
+polybar|notice:  Loaded font "Noto Color Emoji:scale=10" (name=Noto Color Emoji, offset=1, file=/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf)
+polybar|warn:  Systray selection already managed (window=0x4800002)
+
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/lukasz-szmigiel-jFCViYFYcus-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/obi-pixel8propix-M2R9GRVvtdo-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/obi-pixel8propix-M2R9GRVvtdo-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/aniket-deole-M6XC789HLe8-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/aniket-deole-M6XC789HLe8-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/firewatch.png
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/firewatch.png -> /home/ace/Pictures/backgrounds/time-pack/afternoon/anthony-intraversato-vYRAP3yMa3I-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/anthony-intraversato-vYRAP3yMa3I-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/firewatch.png
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/firewatch.png -> /home/ace/Pictures/backgrounds/time-pack/afternoon/jack-millard-zjyP-UYI-ko-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/jack-millard-zjyP-UYI-ko-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/luca-bravo-O453M2Liufs-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/luca-bravo-O453M2Liufs-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/adam-kool-ndN00KmbJ1c-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/adam-kool-ndN00KmbJ1c-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/pexels-roberto-nickson-2559941.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/pexels-roberto-nickson-2559941.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/garrett-parker-DlkF4-dbCOU-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/garrett-parker-DlkF4-dbCOU-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/lukasz-szmigiel-jFCViYFYcus-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/lukasz-szmigiel-jFCViYFYcus-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/jack-millard-zjyP-UYI-ko-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/jack-millard-zjyP-UYI-ko-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/peter-schulz-b71EMLNwsQM-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/peter-schulz-b71EMLNwsQM-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/aniket-deole-M6XC789HLe8-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/aniket-deole-M6XC789HLe8-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/garrett-parker-DlkF4-dbCOU-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/garrett-parker-DlkF4-dbCOU-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/aniket-deole-M6XC789HLe8-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/aniket-deole-M6XC789HLe8-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/obi-pixel8propix-M2R9GRVvtdo-unsplash.jpg
+Switching to new time of day: afternoon
+/home/ace/Pictures/backgrounds/time-pack/afternoon/obi-pixel8propix-M2R9GRVvtdo-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/afternoon/firewatch.png
+Switching to new time of day: night
+/home/ace/Pictures/backgrounds/time-pack/afternoon/firewatch.png -> /home/ace/Pictures/backgrounds/time-pack/night/casey-horner-O0R5XZfKUGQ-unsplash.jpg
+Switching to new time of day: night
+/home/ace/Pictures/backgrounds/time-pack/night/casey-horner-O0R5XZfKUGQ-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/night/todd-diemer-uFomxGheuGk-unsplash.jpg
+Switching to new time of day: night
+/home/ace/Pictures/backgrounds/time-pack/night/todd-diemer-uFomxGheuGk-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/night/mark-basarab-1OtUkD_8svc-unsplash.jpg
+Switching to new time of day: night
+/home/ace/Pictures/backgrounds/time-pack/night/mark-basarab-1OtUkD_8svc-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/night/james-wheeler-InOgamK2cuY-unsplash.jpg
+Switching to new time of day: night
+/home/ace/Pictures/backgrounds/time-pack/night/james-wheeler-InOgamK2cuY-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/night/firewatch.jpg
+Switching to new time of day: night
+/home/ace/Pictures/backgrounds/time-pack/night/firewatch.jpg -> /home/ace/Pictures/backgrounds/time-pack/night/pang-yuhao-efJTdhsmzPI-unsplash.jpg
+Switching to new time of day: night
+/home/ace/Pictures/backgrounds/time-pack/night/pang-yuhao-efJTdhsmzPI-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/night/jase-bloor-oCZHIa1D4EU-unsplash.jpg
+polybar|error: tray: Failed to clear client(0x2c001aa, slack) (XCB_WINDOW (3))
+polybar|error: Failed to query _XEMBED_INFO, removing client(0x2c001aa, slack) ... (XCB_WINDOW (3))
+polybar|error: tray: Failed to unembed window '' (0x2c001aa)
+polybar|error: tray: Failed to clear client(0x2c0000b, slack) (XCB_WINDOW (3))
+polybar|error: Failed to query _XEMBED_INFO, removing client(0x2c0000b, slack) ... (XCB_WINDOW (3))
+polybar|error: tray: Failed to unembed window '' (0x2c0000b)
+Switching to new time of day: night
+/home/ace/Pictures/backgrounds/time-pack/night/jase-bloor-oCZHIa1D4EU-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/night/james-wheeler-InOgamK2cuY-unsplash.jpg
+Switching to new time of day: night
+/home/ace/Pictures/backgrounds/time-pack/night/james-wheeler-InOgamK2cuY-unsplash.jpg -> /home/ace/Pictures/backgrounds/time-pack/night/nadia-ivanova-HEHSE12vXSg-unsplash.jpg

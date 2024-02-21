@@ -1,7 +1,7 @@
 return {
     'nvim-tree/nvim-tree.lua',
     keys = {
-        {'<leader>pv', '<cmd>NvimTreeToggle<cr>', mode="n", desc="NvimTree"}
+        {'<leader>pv', '<cmd>NvimTreeToggle<cr>', mode="n", desc="Toggle Folder View"}
     },
     dependencies = {
         'nvim-tree/nvim-web-devicons', -- optional
@@ -15,7 +15,7 @@ return {
                 width = 30,
                 side = "right",
                 number = true,
-                relativenumber = false,
+                relativenumber = true,
             },
             renderer = {
                 group_empty = true,

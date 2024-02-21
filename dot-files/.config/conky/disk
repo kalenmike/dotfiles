@@ -1,0 +1,35 @@
+conky.config = {
+    background = true,
+    update_interval = 1,
+
+    double_buffer = true,
+    no_buffers = true,
+
+    own_window = true,
+    own_window_type = 'desktop',
+
+    alignment = 'top_right',
+    gap_x = 30,
+    gap_y = 60,
+
+    minimum_width = 200, maximum_width = 200,
+
+    use_xft = true,
+    font = 'DejaVu Sans Mono:size=10',
+    xftalpha = 0.8,
+    default_color = 'white',
+
+    draw_shades = false,
+    draw_outline = false,
+    draw_borders = false,
+    draw_graph_borders = false,
+
+    override_utf8_locale = true,
+};
+
+conky.text = [[
+${color grey}Disk Usage: ${fs_used_perc /}%${color}
+${color grey}Home: ${exec du -s --block-size=1G /home/ace | cut -f1}${color}
+${color grey}User Folder Depth 2 Size:${exec du -h --max-depth=2 /home/ace | awk '{print $1}' | uniq -c | sort -hr | head -n 10}${color}
+]];
+
