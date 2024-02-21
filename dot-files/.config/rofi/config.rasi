@@ -1,0 +1,24 @@
+configuration {
+    modi: "window,drun,ssh,combi";
+    show-icons: true;
+    icon-theme: "Papirus";
+    combi-modi: "window,drun,ssh";
+
+    me-select-entry: [MouseSecondary];
+    me-accept-entry: [ MousePrimary];
+    hover-select: true;
+    font: "JetBrainsMono Nerd Font Mono 11";
+    
+    kb-remove-to-eol: "";
+    kb-accept-entry: "Control+m,Return,KP_Enter";
+    kb-mode-complete: "";
+    kb-move-char-back: "";
+    kb-move-char-forward: "";
+    kb-remove-char-back: "BackSpace,Shift+BackSpace";
+    kb-cancel: "Escape,Control+g,Control+bracketleft,Control+q";
+
+    kb-row-up: "Up,Control+k";
+    kb-row-down: "Down,Control+j";
+    kb-row-right: "Right,Control+l";
+    kb-row-left: "Left,Control+h";
+}

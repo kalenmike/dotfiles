@@ -1,0 +1,87 @@
+/*
+ *
+ * Author  : Aditya Shakya
+ * Mail    : adi1090x@gmail.com
+ * Github  : @adi1090x
+ * Twitter : @adi1090x
+ *
+ */
+
+configuration {
+    show-icons: true;
+    font: "JetBrainsMono Nerd Font Mono 11";
+    disable-history: false;
+    sidebar-mode: false;
+    hover-select: true;
+}
+
+@import "~/.config/rofi/themes/rose-pine.rasi" 
+
+* {
+    accent: #009777;
+    background: #1d2128ee;
+    background-light: #121519;
+    foreground: #009777;
+    on: #ff0000;
+    off: #00ff00;
+}
+
+window {
+    transparency: "real";
+    border-radius: @radius;
+    location: South;
+    width: 500px;
+    x-offset: 0px;
+    y-offset: -5px;
+    background-color: @bg;
+    border: @border-width;
+    border-color: @secondary;
+}
+
+listview {
+    columns: 9;
+    lines: 1;
+    spacing: 1%;
+    cycle: false;
+    dynamic: false;
+    layout: vertical;
+    background-color: #00000000;
+}
+
+mainbox {
+    background-color: @bg;
+    children: [ listview];
+    spacing: 15px;
+    margin: 7px 7px 7px 7px;
+}
+
+element {
+    background-color: #00000000;
+    text-color: @fg;
+    orientation: vertical;
+    border-radius: 4px;
+    children: [ element-icon];
+    squared: true;
+    /* padding: 7px 0 7px 0; */
+}
+
+element-icon {
+    background-color: inherit;
+    text-color: inherit;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+    size: 25px;
+    border: 0px;
+    margin: 0px 0px 0px 0px;
+    padding: 10px 0 10px 0;
+    squared: true;
+    padding: 15px 0 15px 0;
+}
+
+element selected {
+    background-color: @primary;
+    text-color: @fg;
+    border: 0px;
+    border-radius: @radius;
+    border-color: @border;
+}
