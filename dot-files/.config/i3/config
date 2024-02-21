@@ -194,7 +194,7 @@ client.placeholder #1E1D23 #1E1D23 #ffffff #1E1D23 #1E1D23
 #client.background #000000
 
 # Custom Scripts
-exec_always --no-startup-id $scriptPath/launch/launch-all.sh
+exec_always --no-startup-id $scriptPath/launcher/run.sh
 #exec_always --no-startup-id /home/ace/Developer/bash/toggle-touchpad.sh disable
 #bindsym XF86TouchpadToggle exec /home/ace/Developer/bash/toggle-touchpad.sh toggle
 
@@ -204,12 +204,12 @@ exec_always --no-startup-id $scriptPath/launch/launch-all.sh
 
 #Move workspaces between monitors
 bindsym $mod+p move workspace to output right
-bindsym $mod+Escape exec $scriptPath/launch/launch-i3lock.sh && systemctl suspend
+bindsym $mod+Escape exec $scriptPath/launcher/apps/i3lock.sh && systemctl suspend
 
 # Print screen
 bindsym Print exec flameshot full -p ~/Pictures/screenshots
 bindsym Shift+Print exec flameshot gui
-bindsym Control+Print exec $scriptPath/launch/launch-scrot.sh
+bindsym Control+Print exec $scriptPath/launcher/apps/scrot.sh
 
 #Add mod tab support between monitors
 bindsym $mod+Tab exec i3-msg focus output next
