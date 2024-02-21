@@ -7,7 +7,7 @@
 # Location of app startup scripts
 SCRIPT_DIR="$(dirname "$0")/apps"
 # Where to save the log file
-LOG_FILE="$SCRIPT_DIR/launch.log"
+LOG_FILE="$SCRIPT_DIR/../launch.log"
 # App startup scripts to run
 SCRIPTS=(
     "configure-displays.sh" # External Monitor

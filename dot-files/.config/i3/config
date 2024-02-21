@@ -1,7 +1,7 @@
 # Set leader as super
 set $mod Mod4
 
-set $scriptPath /home/ace/Projects/scripts
+set $scriptPath $HOME/Projects/linux/scripts
 
 # Hide the window title bar
 font pango:monospace 0
@@ -51,7 +51,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # Application fuzzy search
-bindsym $mod+d exec rofi -show drun -theme /home/ace/.config/rofi/themes/launcher.rasi
+bindsym $mod+d exec rofi -show drun -theme $HOME/.config/rofi/themes/launcher.rasi
 # Bookmarks fuzzy search
 bindsym $mod+b exec $scriptPath/firefox-bookmarks.sh -f $scriptPath/ff-bookmarks.txt
 
@@ -217,13 +217,13 @@ bindsym $mod+Tab exec i3-msg focus output next
 #bindsym $mod+Tab workspace back_and_forth
 
 # App Switcher
-bindsym Mod1+Tab exec rofi -show window -theme /home/ace/.config/rofi/themes/switcher.rasi -window-format "[{w}]  {c}  {t}"
+bindsym Mod1+Tab exec rofi -show window -theme $HOME/.config/rofi/themes/switcher.rasi -window-format "[{w}]  {c}  {t}"
 
 #Launch favourites
-bindsym $mod+x exec $scriptPath/favourite_apps.sh
+bindsym $mod+x exec $scriptPath/launcher/apps/rofi-favourites.sh
 
 # Show clipboard
-bindsym $mod+c exec $scriptPath/show-greenclip.sh
+# bindsym $mod+c exec $scriptPath/show-greenclip.sh
 
 # i3 Gaps
 gaps outer 0

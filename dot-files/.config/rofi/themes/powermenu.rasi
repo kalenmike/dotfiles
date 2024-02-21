@@ -1,0 +1,77 @@
+configuration {
+    font: "JetBrainsMono Nerd Font Mono 11";
+    show-icons: true;
+    icon-theme: "Papirus";
+    display-drun: "";
+    drun-display-format: "";
+    disable-history: false;
+    sidebar-mode: false;
+}
+
+@import "~/.config/rofi/themes/rose-pine.rasi"
+
+window {
+    transparency: "real";
+    background-color: @bg;
+    text-color: @fg;
+    border: @border-width;
+    border-color: @secondary;
+    border-radius: @radius;
+    width: 70px;
+    location: east;
+    x-offset: -10px;
+    y-offset: 0;
+}
+
+listview {
+    background-color: @transparent;
+    padding: 0px;
+    columns: 1;
+    lines: 5;
+    spacing: 1%;
+    cycle: false;
+    dynamic: true;
+    layout: vertical;
+}
+
+mainbox {
+    background-color: @transparent;
+    children: [ listview];
+    margin: 7px 7px 7px 7px;
+}
+
+element {
+    background-color: @bg;
+    text-color: @fg;
+    orientation: vertical;
+    border-radius: 0%;
+    padding: 7px 0 7px 0;
+}
+
+element-icon {
+    background-color: inherit;
+    text-color: inherit;
+    horizontal-align: 0;
+    vertical-align: 0;
+    size: 0px;
+    border: 0px;
+}
+
+element-text {
+    background-color: @transparent;
+    text-color: inherit;
+    expand: true;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    font: "JetBrainsMono Nerd Font Mono 25";
+}
+
+element selected {
+    background-color: @primary;
+    text-color: @fg;
+    border: 0% 0% 0% 0%;
+    border-radius: @radius;
+    border-color: @primary;
+}
