@@ -1,8 +1,11 @@
 {
-"name":"personal-snippets",
-"contributes": {
+  "name": "personal-snippets",
+  "contributes": {
     "snippets": [
-{ "language" : "vue", "path": "./vue.json"}
+      {
+        "language": "vue",
+        "path": "./vue.json"
+      }
     ]
-}
+  }
 }

@@ -1,3 +1,2 @@
-require('kalenmichael')
---require('luasnip.loaders.from_lua').load({ paths = '~/.config/nvim/snippets' })
-
+require("kalenmichael.core")
+require("kalenmichael.lazy")

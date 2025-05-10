@@ -122,6 +122,7 @@ function pysrc() {
 }
 
 function ssh_add_overwrite(){
+    echo "THIS IS THE NEW FUNCTION"
     # Start ssh-agent if not running
     if ! pgrep -u "$USER" ssh-agent > /dev/null; then
         echo -n "Starting SSH Agent: "

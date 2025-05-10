@@ -1,18 +1,18 @@
 {
-    "vue3" : {
-        "prefix": "vue3",
-        "body": [
-        "<script lang=\"ts\" setup>",
-        "$1",
-        "</script>",
-        "",
-        "<template>",
-        "$2",
-        "</template>",
-        "",
-        "<style lang=\"scss\" scoped>",
-        "$3",
-        "</style>"
-        ]
-    }
+  "vue3": {
+    "prefix": "vue3",
+    "body": [
+      "<script lang=\"ts\" setup>",
+      "$1",
+      "</script>",
+      "",
+      "<template>",
+      "$2",
+      "</template>",
+      "",
+      "<style lang=\"scss\" scoped>",
+      "$3",
+      "</style>"
+    ]
+  }
 }

@@ -1,7 +1,7 @@
 return {
     'nvim-tree/nvim-tree.lua',
     keys = {
-        {'<leader>pv', '<cmd>NvimTreeToggle<cr>', mode="n", desc="Toggle Folder View"}
+        { '<leader>pv', '<cmd>NvimTreeToggle<cr>', mode = "n", desc = "Toggle Folder View" }
     },
     dependencies = {
         'nvim-tree/nvim-web-devicons', -- optional
@@ -23,6 +23,11 @@ return {
             filters = {
                 dotfiles = true,
             },
+            git = {
+                enable = true,
+                ignore = true,
+                timeout = 400
+            }
         })
     end
 }

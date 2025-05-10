@@ -11,9 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
+
 -- Lazy needs leader set before setup
 vim.g.mapleader = " "
-require('lazy').setup('plugins')
-require("kalenmichael.set")
-require("kalenmichael.remap")
---require("kalenmichael.welcome")
+
+require('lazy').setup({ { import = "kalenmichael.plugins" }, { import = "kalenmichael.plugins.lsp" } })

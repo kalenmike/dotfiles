@@ -38,5 +38,10 @@ local function saveAndNotify()
     vim.cmd('w')
     vim.notify('File saved', vim.log.levels.INFO)
 end
-
 vim.keymap.set("n", "zz", saveAndNotify, { noremap = true, silent = true, desc = "Save file" })
+
+-- Select whole file
+vim.keymap.set("n", "<leader>a", "ggVG", { noremap = true, silent = true, desc = "Select All" })
+
+-- Go to previous file
+vim.keymap.set("n", "<leader>b", ":b #<CR>", { noremap = true, silent = true })
