@@ -11,11 +11,12 @@ return {
 
         -- LSP Support
         { 'neovim/nvim-lspconfig' },
+
         -- Autocompletion
-        { 'hrsh7th/nvim-cmp' },
-        { 'hrsh7th/cmp-nvim-lsp' },
-        { 'L3MON4D3/LuaSnip' },
-        { 'nvimtools/none-ls.nvim' }
+        { 'saghen/blink.cmp' },
+
+        { 'nvimtools/none-ls.nvim' },
+        --{ 'nvimtools/none-ls-extras.nvim' }
     },
     event = "BufReadPre",
     config = function()
@@ -45,7 +46,7 @@ return {
 
         require('mason').setup({})
         require('mason-lspconfig').setup({
-            ensure_installed = { "shfmt" },
+            ensure_installed = { 'ts_ls', 'eslint', 'lua_ls', 'emmet_ls' },
             handlers = {
                 lsp_zero.default_setup,
                 lua_ls = function()
@@ -82,17 +83,26 @@ return {
         local null_opts = lsp_zero.build_options('null-ls', {})
 
         null_ls.setup({
+            debug = true,
             on_attach = function(client, bufnr)
                 null_opts.on_attach(client, bufnr)
             end,
             sources = {
                 --null_ls.builtins.formatting.stylua,
-                null_ls.builtins.diagnostics.eslint_d,
+                --require("none-ls.diagnostics.eslint_d"),
                 null_ls.builtins.formatting.prettier,
                 null_ls.builtins.formatting.shfmt.with({
                     extra_args = { "-i", "4" }
                 })
             }
         })
+
+        -- Format on save
+        vim.cmd([[
+            augroup FormatAutogroup
+                autocmd!
+                autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
+            augroup END
+        ]])
     end
 }

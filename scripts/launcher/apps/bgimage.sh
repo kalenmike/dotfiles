@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-IMAGE_ROOT="/home/ace/Pictures/backgrounds/time-pack"
+IMAGE_ROOT="/home/$USER/Pictures/backgrounds/time-pack"
 # Set a randomized background folder
 # feh --bg-scale --randomize /home/ace/Pictures/backgrounds/packs
 

@@ -118,7 +118,7 @@ fi
 
 
 # Include customisations
-source /home/ace/Projects/scripts/bash-mods
+source /home/$USER/.bashmods
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

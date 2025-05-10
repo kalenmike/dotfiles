@@ -9,6 +9,7 @@ autoload -Uz compinit && compinit
 # Add support for LS_COLORS
 export LS_COLORS="$(vivid generate ayu)"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+export COLORTERM=truecolor
 
 # Add keybindings for fzf
 source /usr/share/doc/fzf/examples/key-bindings.zsh

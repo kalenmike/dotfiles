@@ -209,4 +209,4 @@ function is_venv(){
 }
 
 # Add autocomplete for kubectl
-source <(kubectl completion bash)
+#source <(kubectl completion bash)
