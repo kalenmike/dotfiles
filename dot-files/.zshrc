@@ -122,6 +122,11 @@ function pysrc() {
 }
 
 function ssh_add_overwrite(){
+    # Start ssh-agent if not running
+    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+        echo -n "Starting SSH Agent: "
+        eval "$(ssh-agent)"
+    fi
     /usr/bin/ssh-add "$@"
     if [ $? -eq 0 ]; then
         polybar-msg action ssh hook 0 > /dev/null 2>&1
