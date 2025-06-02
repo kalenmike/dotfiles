@@ -6,7 +6,7 @@ return {
     local conform = require("conform")
 
     conform.setup({
-      log_level = vim.log.levels.DEBUG,
+      -- log_level = vim.log.levels.DEBUG,
       format_on_save = {
         lsp_fallback = true,
         async = false,
@@ -21,12 +21,14 @@ return {
         svelte = { "prettier" },
         css = { "prettier" },
         html = { "prettier" },
+        twig = { "djlint" },
         json = { "prettier" },
         yaml = { "prettier" },
         markdown = { "prettier" },
         graphql = { "prettier" },
         python = { "isort", "black" },
         lua = { "stylua" },
+        php = { "php_cs_fixer" },
       },
       formatters = {
         prettier = {
@@ -47,21 +49,5 @@ return {
         },
       },
     })
-
-    vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-      conform.format({
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 1000,
-      })
-    end, { desc = "Format file or range (in visual mode)" })
-
-    -- Format on save
-    -- vim.cmd([[
-    --     augroup FormatAutogroup
-    --         autocmd!
-    --         autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
-    --     augroup END
-    -- ]])
   end,
 }

@@ -2,6 +2,7 @@ return {
   {
     "rcarriga/nvim-notify",
     opts = {
+      background_colour = "#121212",
       timeout = 3000,
       render = "compact",
       top_down = false,

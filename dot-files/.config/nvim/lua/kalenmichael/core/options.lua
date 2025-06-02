@@ -12,8 +12,18 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
+
+-- Folds
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldenable = true
+
+-- Undo State
 vim.opt.undodir = os.getenv("HOME") .. "/.local/state/nvim/undodir"
 vim.opt.undofile = true
+vim.g.undotree_WindowLayout = 2
+vim.g.undotree_SetFocusWhenToggle = 1
+vim.g.undotree_DiffAutoOpen = 1
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
