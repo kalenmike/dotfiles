@@ -1,20 +1,29 @@
 lazynvm() {
-  unset -f nvm node npm
-  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-}
-
-nvm() {
-  lazynvm 
-  nvm $@
+  # only source nvm once
+  if [[ -z "${_NVM_LOADED-}" ]]; then
+    export NVM_DIR="${XDG_CONFIG_HOME:-$HOME/.nvm}"
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+    _NVM_LOADED=1
+  fi
 }
 
 node() {
   lazynvm
-  node $@
+  command node "$@"
 }
 
 npm() {
   lazynvm
-  npm $@
+  command npm "$@"
 }
+
+pnpm(){
+  lazynvm
+  command pnpm "$@"
+}
+
+nvm() {
+  lazynvm
+  command nvm "$@"
+}
+
