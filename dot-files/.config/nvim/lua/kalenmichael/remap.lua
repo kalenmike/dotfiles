@@ -30,13 +30,34 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc =
 
 -- Save current file path to clipboard
 vim.keymap.set("n", "<leader>f", function()
-    vim.fn.setreg("+", vim.fn.expand('%:p'))
+  vim.fn.setreg("+", vim.fn.expand("%:p"))
 end, { noremap = true, silent = true, desc = "Copy filepath to clipboard" })
+
+-- Select whole file
+vim.keymap.set("n", "<leader>a", "ggVG", { noremap = true, silent = true, desc = "Select All" })
+
+-- Go to previous file
+vim.keymap.set("n", "<leader>b", ":b #<CR>", { desc = "Switch to previous buffer", noremap = true, silent = true })
 
 -- Save File
 local function saveAndNotify()
-    vim.cmd('w')
-    vim.notify('File saved', vim.log.levels.INFO)
+  vim.cmd("w")
+  vim.notify("File saved", vim.log.levels.INFO)
 end
 
 vim.keymap.set("n", "zz", saveAndNotify, { noremap = true, silent = true, desc = "Save file" })
+
+-- Close Windows
+vim.keymap.set("n", "<leader>q", ":q<Return>", { noremap = true, silent = true, desc = "Close Window" })
+vim.keymap.set("n", "<leader>Q", ":qa<Return>", { noremap = true, silent = true, desc = "Close All Windows" })
+
+-- Quick Fix Navigation
+vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
+
+-- toggle wrap in the current window
+local function toggle_wrap()
+  vim.opt_local.wrap = not vim.opt_local.wrap:get()
+end
+
+vim.keymap.set("n", "<leader>w", toggle_wrap, { noremap = true, silent = true, desc = "Toggle line wrap" })

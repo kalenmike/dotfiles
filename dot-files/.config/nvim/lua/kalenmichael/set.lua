@@ -8,7 +8,9 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt_local.showbreak = "↳ "
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -31,6 +33,8 @@ vim.opt.updatetime = 50
 vim.opt.listchars = "space:·"
 vim.opt.list = true
 
+vim.opt.showmode = false
+
 --vim.opt.autochdir = true
 
 vim.opt.cmdheight = 0
@@ -39,3 +43,6 @@ vim.g.mapleader = " "
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- Remove Intro Message
+vim.opt.shortmess:append("I")
