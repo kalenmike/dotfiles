@@ -15,19 +15,21 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -f 'UbuntuMono Nerd Font Mono' -
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -e
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -e
 
 # NetworkManager tray
 exec --no-startup-id nm-applet
 
 # Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id $scriptPath/notifications/volume.sh alsa up
-bindsym XF86AudioLowerVolume exec --no-startup-id $scriptPath/notifications/volume.sh alsa down
+#bindsym XF86AudioRaiseVolume exec --no-startup-id $scriptPath/notifications/volume.sh alsa up
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+ unmute
+#bindsym XF86AudioLowerVolume exec --no-startup-id $scriptPath/notifications/volume.sh alsa down
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%- unmute
 bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle
 #bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # Use Mouse to change volume
-bindsym --whole-window button9 exec --no-startup-id $scriptPath/notifications/volume.sh pulse up
-bindsym --whole-window button8 exec --no-startup-id $scriptPath/notifications/volume.sh pulse down
+bindsym --whole-window button9 exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym --whole-window button8 exec --no-startup-id pactl set-sink-volume 0 -5%
 # Music controls
 bindsym XF86AudioPlay exec $scriptPath/toggle/toggle_music.sh
 bindsym XF86AudioPause exec playerctl -p spotify pause
@@ -38,6 +40,11 @@ bindsym XF86AudioPrev exec playerctl -p spotify previous
 # Brightness
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+
+
+# Scratch Pad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 # Mouse Specific
 # Use Mouse+$mod to drag floating windows
@@ -51,7 +58,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # Application fuzzy search
-bindsym $mod+d exec rofi -show drun -theme $HOME/.config/rofi/themes/launcher.rasi
+bindsym $mod+d exec rofi -show drun -dpi 152 -theme $HOME/.config/rofi/themes/launcher.rasi
 # Bookmarks fuzzy search
 bindsym $mod+b exec $scriptPath/firefox-bookmarks.sh -f $scriptPath/ff-bookmarks.txt
 
@@ -68,8 +75,8 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # Split h = horizontal, v = vertical
-bindsym $mod+Shift+minus split h
-bindsym $mod+minus split v
+bindsym $mod+u split h
+bindsym $mod+i split v
 
 # Fullscreen active container
 bindsym $mod+f fullscreen toggle
@@ -127,15 +134,16 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Assign Workspaces:
 assign [class="Slack"] $ws1
-assign [class="firefox" instance="Navigator" window_type="normal" ] $ws2
-assign [class="firefox" instance="Navigator" title="(?i)Firefox Private"] $ws9
-for_window [class="firefox" instance="Navigator" title="(?i)Firefox Private"] move to workspace $ws9
+#assign [class="firefox" instance="Navigator" window_type="normal" ] $ws2
+#assign [class="firefox" instance="Navigator" title="(?i)Firefox Private"] $ws9
+#for_window [class="firefox" instance="Navigator" title="(?i)Firefox Private"] move to workspace $ws9
 assign [class="VSCodium" window_type="normal"] $ws3
 assign [class="Spotify"] $ws6
 for_window [class="Spotify"] move to workspace $ws6
-assign [class="Steam"] $ws7
+#assign [class="Steam"] $ws7
 assign [class="Postman" window_type="normal"] $ws8
-assign [class="obs" window_type="normal"] $ws9
+assign [class="^obs$" window_type="normal"] $ws1
+assign [class="dailyNotes"] $ws10
 
 # Resize window, mouse enabled
 mode "resize" {
@@ -162,9 +170,11 @@ bindsym $mod+r mode "resize"
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Gnome-control-center"] floating enable 
 for_window [class="blueman-manager"] floating enable
+for_window [class="Tor Browser"] floating enable
 # Keep firefox picture in picture on top of all worksapces
 for_window [instance="Toolkit" class="Firefox"] sticky enable
 for_window [title="^floatme$"] floating enable
+for_window [title="^Stutterd$"] floating enable, move position center
 for_window [class="^floatme$"] floating enable, resize set 1700px 900px, move position center
 for_window [class="Pavucontrol"] floating enable, sticky enable
 for_window [class="Blueman-manager"] floating enable, sticky enable
@@ -180,10 +190,12 @@ for_window [class="Thunar" window_type="normal"] floating enable, resize set 170
 for_window [class="Gedit" window_type="normal"] floating enable, resize set 900px 900px
 for_window [title="Event Tester"] floating enable
 for_window [class="thunderbird"] floating enable
+for_window [window_type="dialog" class="kdenlive"] floating enable, resize set 1200px 800px
+for_window [class="dailyNotes"] floating enable, resize set 1300px 1300px, move position center
 
 #Borders
-default_border pixel 1
-default_floating_border pixel 1
+default_border pixel 0
+default_floating_border pixel 0
 # Old RED D10028 #ebbcba
 #<colorclass> <border> <background> <text> <indicator> <child_border>
 client.focused #ebbcba #ebbcba #ffffff #ebbcba #ebbcba #ebbcba
@@ -201,6 +213,8 @@ exec_always --no-startup-id $scriptPath/launcher/run.sh
 # Custom bindings
 # To get the key code use xev
 
+# Open a placeholder
+bindsym $mod+Shift+v exec i3-msg open
 
 #Move workspaces between monitors
 bindsym $mod+p move workspace to output right
@@ -226,7 +240,7 @@ bindsym $mod+x exec $scriptPath/launcher/apps/rofi-favourites.sh
 # bindsym $mod+c exec $scriptPath/show-greenclip.sh
 
 # i3 Gaps
-gaps outer 0
-gaps inner 10
-smart_gaps on
+gaps outer 6
+gaps inner 6
+smart_gaps off
 smart_borders on

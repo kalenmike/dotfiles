@@ -1,4 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run
+# /// script
+# dependencies = [
+#   "i3ipc",
+# ]
+# ///
 
 """
 This script uses the i3ipc python module to switch the layout splith / splitv
@@ -14,6 +19,7 @@ License: GPL3
 
 Dependencies: python-i3ipc>=2.0.1 (i3ipc-python)
 """
+
 import argparse
 import os
 import sys
@@ -57,7 +63,9 @@ def switch_splitting(i3, e, debug, outputs, workspaces, depth_limit):
         # Stop, if outputs is set and current output is not in the selection
         if outputs and output not in outputs:
             if debug:
-                print(f"Debug: Autotiling turned off on output {output}", file=sys.stderr)
+                print(
+                    f"Debug: Autotiling turned off on output {output}", file=sys.stderr
+                )
             return
 
         if con and not workspaces or (str(con.workspace().num) in workspaces):
@@ -99,10 +107,12 @@ def switch_splitting(i3, e, debug, outputs, workspaces, depth_limit):
             is_tabbed = con.parent.layout == "tabbed"
 
             # Exclude floating containers, stacked layouts, tabbed layouts and full screen mode
-            if (not is_floating
-                    and not is_stacked
-                    and not is_tabbed
-                    and not is_full_screen):
+            if (
+                not is_floating
+                and not is_stacked
+                and not is_tabbed
+                and not is_full_screen
+            ):
                 new_layout = "splitv" if con.rect.height > con.rect.width else "splith"
 
                 if new_layout != con.parent.layout:
@@ -110,10 +120,16 @@ def switch_splitting(i3, e, debug, outputs, workspaces, depth_limit):
                     if result[0].success and debug:
                         print(f"Debug: Switched to {new_layout}", file=sys.stderr)
                     elif debug:
-                        print(f"Error: Switch failed with err {result[0].error}", file=sys.stderr)
+                        print(
+                            f"Error: Switch failed with err {result[0].error}",
+                            file=sys.stderr,
+                        )
 
         elif debug:
-            print("Debug: No focused container found or autotiling on the workspace turned off", file=sys.stderr)
+            print(
+                "Debug: No focused container found or autotiling on the workspace turned off",
+                file=sys.stderr,
+            )
 
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
@@ -122,23 +138,51 @@ def switch_splitting(i3, e, debug, outputs, workspaces, depth_limit):
 def main():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-d", "--debug", action="store_true",
-                        help="print debug messages to stderr")
-    parser.add_argument("-v", "--version", action="version",
-                        version=f"%(prog)s {__version__}, Python {sys.version}",
-                        help="display version information")
-    parser.add_argument("-o", "--outputs", nargs="*", type=str, default=[],
-                        help="restricts autotiling to certain output; example: autotiling --output  DP-1 HDMI-0")
-    parser.add_argument("-w", "--workspaces", nargs="*", type=str, default=[],
-                        help="restricts autotiling to certain workspaces; example: autotiling --workspaces 8 9")
-    parser.add_argument("-l", "--limit", type=int, default=0,
-                        help='limit how often autotiling will split a container; try "2" if you like master-stack layouts; default: 0 (no limit)')
+    parser.add_argument(
+        "-d", "--debug", action="store_true", help="print debug messages to stderr"
+    )
+    parser.add_argument(
+        "-v",
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}, Python {sys.version}",
+        help="display version information",
+    )
+    parser.add_argument(
+        "-o",
+        "--outputs",
+        nargs="*",
+        type=str,
+        default=[],
+        help="restricts autotiling to certain output; example: autotiling --output  DP-1 HDMI-0",
+    )
+    parser.add_argument(
+        "-w",
+        "--workspaces",
+        nargs="*",
+        type=str,
+        default=[],
+        help="restricts autotiling to certain workspaces; example: autotiling --workspaces 8 9",
+    )
+    parser.add_argument(
+        "-l",
+        "--limit",
+        type=int,
+        default=0,
+        help='limit how often autotiling will split a container; try "2" if you like master-stack layouts; default: 0 (no limit)',
+    )
     """
     Changing event subscription has already been the objective of several pull request. To avoid doing this again
     and again, let's allow to specify them in the `--events` argument.
     """
-    parser.add_argument("-e", "--events", nargs="*", type=str, default=["WINDOW", "MODE"],
-                        help="list of events to trigger switching split orientation; default: WINDOW MODE")
+    parser.add_argument(
+        "-e",
+        "--events",
+        nargs="*",
+        type=str,
+        default=["WINDOW", "MODE"],
+        help="list of events to trigger switching split orientation; default: WINDOW MODE",
+    )
 
     args = parser.parse_args()
 
@@ -146,12 +190,14 @@ def main():
         if args.outputs:
             print(f"autotiling is only active on outputs: {','.join(args.outputs)}")
         if args.workspaces:
-            print(f"autotiling is only active on workspaces: {','.join(args.workspaces)}")
+            print(
+                f"autotiling is only active on workspaces: {','.join(args.workspaces)}"
+            )
 
     # For use w/ nwg-panel
     ws_file = os.path.join(temp_dir(), "autotiling")
     if args.workspaces:
-        save_string(','.join(args.workspaces), ws_file)
+        save_string(",".join(args.workspaces), ws_file)
     else:
         if os.path.isfile(ws_file):
             os.remove(ws_file)

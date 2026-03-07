@@ -1,0 +1,14 @@
+[Unit]
+Description=Reload Picom on resume
+After=suspend.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/jet/Projects/linux/scripts/launcher/apps/picom.sh
+RemainAfterExit=true
+User=jet
+Environment="DISPLAY=:0"  # Ensure DISPLAY variable is set
+Environment="XAUTHORITY=/home/jet/.Xauthority"  # Ensure XAUTHORITY is set
+
+[Install]
+WantedBy=suspend.target

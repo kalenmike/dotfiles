@@ -1,57 +1,44 @@
 #!/usr/bin/env bash
 # Calculates the current phase of the moon
 
-known_new_moon="2023-12-13"
+# Known new moon: 2000-01-06 (astronomical reference)
+known_new_moon_jdn=2451550
 
-current_date=$(date +%F)
-
-# Convert date to Julian Day Number
 date_to_jdn() {
-    local date=$1
-    local year=$(echo $date | cut -d '-' -f 1)
-    local month=$(echo $date | cut -d '-' -f 2)
-    local day=$(echo $date | cut -d '-' -f 3 | sed 's/^0*//')
+    local y m d
+    read y m d <<<"${1//-/ }"
 
-    local a=$(( (14 - month) / 12 ))
-    local y=$(( year + 4800 - a ))
-    local m=$(( month + 12*a - 3 ))
+    local a=$(( (14 - m) / 12 ))
+    y=$(( y + 4800 - a ))
+    m=$(( m + 12*a - 3 ))
 
-    echo $(( day + (153*m+2)/5 + 365*y + y/4 - y/100 + y/400 - 32045 ))
+    echo $(( d + (153*m + 2)/5 + 365*y + y/4 - y/100 + y/400 - 32045 ))
 }
 
-# Calculate the Julian Day Number for known new moon and current date
-jdn_new_moon=$(date_to_jdn $known_new_moon)
-jdn_today=$(date_to_jdn $current_date)
+jdn=$(date_to_jdn "$(date +%F)")
 
-# Calculate the difference in days
-days_since_new_moon=$(( jdn_today - jdn_new_moon ))
+# Days since known new moon
+days=$(( jdn - known_new_moon_jdn ))
 
-# The lunar cycle is about 29.53 days
-# Calculate the phase of the moon
-phase_index=$(( days_since_new_moon % 29 ))
+# Length of synodic month in scaled integers
+# 29.530588 × 1000000
+cycle=29530588
 
-if [ "$1" == "--verbose" ]; then
-    echo $phase_index
-fi
+# Scale days into same unit
+age=$(( (days * 1000000) % cycle ))
 
-# Determine the moon phase based on the phase index
-if (( phase_index < 4 )); then
-    phase_emoji="🌑" # New Moon
-elif (( phase_index < 7 )); then
-    phase_emoji="🌒" # Waxing Crescent
-elif (( phase_index < 11 )); then
-    phase_emoji="🌓" # First Quarter
-elif (( phase_index < 15 )); then
-    phase_emoji="🌔" # Waxing Gibbous
-elif (( phase_index < 18 )); then
-    phase_emoji="🌕" # Full Moon
-elif (( phase_index < 22 )); then
-    phase_emoji="🌖" # Waning Gibbous
-elif (( phase_index < 26 )); then
-    phase_emoji="🌗" # Last Quarter
-else
-    phase_emoji="🌘" # Waning Crescent
-fi
+# Convert to phase index (0–7)
+phase=$(( (age * 8) / cycle ))
 
-# Output the phase emoji
-echo "$phase_emoji"
+case $phase in
+    0) emoji="🌑" ;;
+    1) emoji="🌒" ;;
+    2) emoji="🌓" ;;
+    3) emoji="🌔" ;;
+    4) emoji="🌕" ;;
+    5) emoji="🌖" ;;
+    6) emoji="🌗" ;;
+    7) emoji="🌘" ;;
+esac
+
+echo "$emoji"

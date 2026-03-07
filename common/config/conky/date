@@ -1,0 +1,38 @@
+conky.config = {
+	background = true,
+	update_interval = 60,
+
+	double_buffer = true,
+	no_buffers = true,
+	alignment = 'bottom_right',
+	gap_x = 10,
+	gap_y = 10,
+	minimum_width = 550, minimum_height = 150,
+	maximum_width = 1920,
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+
+	xinerama_head = 1,
+
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+	default_shade_color = '#112422',
+
+	override_utf8_locale = true,
+	use_xft = true,
+	font = 'Feena Casual:size=10',
+	xftalpha = 1,
+	uppercase = true,
+
+};
+
+conky.text = [[
+${font Anurati:size=75}${alignr}${color D6D5D4}${time %A}
+${voffset -70}${offset 880}${font NATS:size=30:bold}${alignr}${color D6D5D4}${time %d %B}  
+]];

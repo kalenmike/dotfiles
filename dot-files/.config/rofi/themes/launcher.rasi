@@ -8,32 +8,40 @@
 
 configuration {
     show-icons: true;
-    display-drun: "";
+    display-drun: " ";
     drun-display-format: "{name}";
     disable-history: false;
 }
 
-@import "~/.config/rofi/themes/rose-pine.rasi"
+@import "~/.config/rofi/themes/colors.rasi"
 
 window {
     transparency: "real";
-    background-color: @bg;
+    background-color: @bg-light;
     text-color: @fg;
     border: @border-width;
-    border-color: @secondary;
+    border-color: @bg-dark;
     border-radius: @radius;
-    width: 700px;
+    width: 1500px;
     location: center;
     x-offset: 0;
     y-offset: 0;
 }
 
+mainbox {
+    background-color: @bg-light;
+    border-color: @bg-dark;
+    children: [ inputbar, listview];
+    spacing: 2%;
+    padding: 2% 1% 2% 1%;
+}
+
 prompt {
     enabled: true;
-    padding: 8px 10px 0 10px;
+    padding: 12px 12px 0 12px;
     background-color: @transparent;
     text-color: @disabled;
-    font: "FiraCode Nerd Font 20";
+    font: "JetBrainsMono Nerd Font 20";
 }
 
 entry {
@@ -49,7 +57,7 @@ entry {
 
 inputbar {
     children: [ prompt, entry];
-    background-color: @bg-alt;
+    background-color: @bg-dark;
     text-color: @disabled;
     expand: false;
     border-radius: @radius;
@@ -67,16 +75,8 @@ listview {
     layout: vertical;
 }
 
-mainbox {
-    background-color: @bg;
-    border-color: @bg-alt;
-    children: [ inputbar, listview];
-    spacing: 2%;
-    padding: 2% 1% 2% 1%;
-}
-
 element {
-    background-color: @bg;
+    background-color: @transparent;
     text-color: @fg;
     orientation: horizontal;
     padding: 1% 0.5% 1% 0.75%;
@@ -100,7 +100,7 @@ element-text {
 }
 
 element selected {
-    background-color: @secondary;
-    text-color: @bg;
+    background-color: @bg-dark;
+    text-color: @secondary;
     border-radius: @radius;
 }

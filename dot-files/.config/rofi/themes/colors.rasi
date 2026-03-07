@@ -1,0 +1,22 @@
+/* https://catppuccin.com/palette/ */
+
+* {
+    /* Background */
+    bg-dark: #232634;
+    bg-light: #303446;
+
+    /* Text */
+    fg: #c6d0f5;
+
+    /* Accents */
+    primary: #8caaee;
+    secondary: #f2d5cf;
+
+    /* Special */
+    alert: #eb6f92;
+    disabled: #626880;
+    transparent: #00000000;
+
+    radius: 12px;
+    border-width: 4px;
+}

@@ -1,14 +1,32 @@
+# Location
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_FIND_NO_DUPS
-setopt HIST_SAVE_NO_DUPS
 
-alias history='history 1'
+# Increase these to avoid constant churn
+HISTSIZE=50000
+SAVEHIST=50000
+
+# The "Hacker" Standard:
+# Store only unique commands, period.
+setopt HIST_IGNORE_ALL_DUPS
+# Don't record duplicate lines in the session at all.
+setopt HIST_SAVE_NO_DUPS
+# Add timestamps so you can see *when* you did something.
+setopt EXTENDED_HISTORY
+# Don't save commands that start with a space (for passwords).
+setopt HIST_IGNORE_SPACE
+# Remove extra whitespace.
+setopt HIST_REDUCE_BLANKS
+# Share history across all open windows.
+setopt SHARE_HISTORY
+# Dont show duplicates when searching history
+setopt HIST_FIND_NO_DUPS
+# Trim whitespace
+setopt HIST_REDUCE_BLANKS
+
+# Show all history with the timestampe
+alias history='fc -li 1'
 alias h='history'
-alias hs='history | grep'
-alias hsi='history | grep -i'
+# Search history
+alias hs='h | tac | fzf'
+# Search history by date
+alias hdate='history | grep'

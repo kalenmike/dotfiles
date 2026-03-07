@@ -1,48 +1,165 @@
-# Picom Config Customizations https://config.phundrak.com/picom.html
-experimental-backends = true;
+# Example: https://github.com/yshui/picom/blob/next/picom.sample.conf
+#################################
+#        BACKEND SETTINGS       #
+#################################
+
+# Use OpenGL backend (GLX) – smoothest on Intel GPUs
+# xrender=stable/less lag glx=opengl/better blur/colors animations
 backend = "glx";
 
-detect-rounded-corners = true;
-active-opacity=1;
-#inactive-opacity=0.95;
-shadow = false;
-inactive-opacity-override = true;
-mark-ovredir-focused = true;
+# Enable vsync to prevent tearing
+vsync = true;
+
+# Automatically track screen damage for efficiency
+use-damage = true;
+#
+# Use higher precision during rendering
+dithered-present = true;
+
+#################################
+#        WINDOW DETECTION       #
+#################################
+
+# Detect windows that already have rounded corners
+detect-rounded-corners = false;
+
+# Respect window opacity if an app sets it
 detect-client-opacity = true;
-refresh-rate = 0
-use-damage = false
-#opacity-rule = [ 
-#	"85:class_g *?= 'gnome-terminal'" 
-#];
 
-# Radius
-#corner-radius= 10;
-#round-borders = 1;
-#rounded-corners-exclude = [
-#  "_NET_WM_WINDOW_TYPE@[0]:a = '_NET_WM_WINDOW_TYPE_DOCK'",
-#  "class_g = 'Code'",
-#  "class_g = 'firefox'"
-#];
+# Highlight override-redirect windows properly (like menus)
+mark-ovredir-focused = true;
 
-# Fading
-fading = true;
-fade-in-step = 0.03
-fade-out-step = 0.03
-#fade-delta = 50
-#fade-in-time = 50
-#fade-out-time = 100
-opacity-rule = [ 
-	"20:class_g = 'Moving'" 
+#################################
+#          OPACITY              #
+#################################
+
+active-opacity = 1.0         # Fully opaque focused windows
+inactive-opacity = 0.92      # Slightly transparent unfocused windows
+inactive-opacity-override = false   # Respect app opacity, avoid forcing
+
+# Example of per-window opacity rules (optional)
+opacity-rule = [
+    "100:class_g = 'Brave-browser'",
+    "100:class_g = 'firefox'",
+    "100:class_g = 'Firefox'"
 ];
 
-# Fix screen tearing
-vsync = true
+#################################
+#           SHADOWS             #
+#################################
 
-# jonaburg/picom Specific
-transition-length = 300
-transition-pow-x = 0.1
-transition-pow-y = 0.1
-transition-pow-w = 0.1
-transition-pow-h = 0.1
-size-transition = true
-spawn-cnter = false
+# Turn off shadows for tiling WM (clean look)
+shadow = false
+
+#################################
+#        ROUNDED CORNERS        #
+#################################
+
+corner-radius = 12            # Smaller, cleaner radius than 20px
+
+# Enable rounding of window borders
+round-borders = true
+
+# Exclude i3 frames and docks to prevent ugly artifacts
+rounded-corners-exclude = [
+  "class_g = 'i3-frame'",
+  "_NET_WM_WINDOW_TYPE@[0] = '_NET_WM_WINDOW_TYPE_DOCK'"
+]
+
+#################################
+#            FADING             #
+#################################
+
+fading = true
+fade-in-step = 0.07
+fade-out-step = 0.07
+fade-delta = 5
+no-fading-openclose = false
+
+#################################
+#        PERFORMANCE            #
+#################################
+
+# Intel GLX optimizations
+# glx-no-stencil = true
+# glx-no-rebind-pixmap = true
+
+unredir-if-possible = true
+
+#################################
+#       TRANSITIONS (yshui)     #
+#################################
+
+# Smooth movement/resize transitions
+# transition-length = 300
+# transition-pow-x = 0.2
+# transition-pow-y = 0.2
+# transition-pow-w = 0.2
+# transition-pow-h = 0.2
+# size-transition = true
+# spawn-center = false
+
+# animations = (
+# {
+#     triggers = ["close", "hide"];
+#     preset = "fly-out";
+#     direction = "up";
+#     duration = 0.5;
+# },
+# {
+#     triggers = ["open", "show"];
+#     preset = "fly-in";
+#     direction = "down";
+#     duration = 0.5;
+# }
+# )
+#
+# TRIGGERS: open, close, show, hide, size, position, opacity, color
+# MODIFY: opacity, scale, offset, crop, shadow
+
+animations = (
+  {
+    triggers = ["open", "show"];
+    preset = "appear";
+    duration = 0.2;
+  },
+  {
+    triggers = ["close", "hide"];
+    suppressions = ["open", "show"];
+    opacity = {
+      duration = 0.3;
+      start = "window-raw-opacity";
+      end = 0;
+    };
+  },
+  {
+  triggers = ["size"]
+  scale-x = {
+      curve = "cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+      start = "window-width-before / window-width";
+      end = 1;
+      duration = 0.2
+  };
+  scale-y = {
+      curve = "cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+      start = "window-height-before / window-height";
+      end = 1;
+      duration = 0.2
+  };
+  offset-x = {
+      curve = "cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+      start = "window-x-before - window-x";
+      duration = 0.2
+      end = 0;
+  };
+  offset-y = {
+      curve = "cubic-bezier(0.175, 0.885, 0.32, 1.2)";
+      start = "window-y-before - window-y";
+      duration = 0.2
+      end = 0;
+  };
+
+  shadow-scale-y = "scale-y";
+  shadow-scale-x = "scale-x";
+},
+)

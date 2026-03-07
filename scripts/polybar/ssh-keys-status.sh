@@ -6,7 +6,9 @@
 LOADED_KEYS=$(ssh-add -l)
 
 if [[ $LOADED_KEYS == *"no identities"* ]]; then
-    echo '%{T12}%{FC33B23} 󰣀 %{F-}%{T-}'
+    # No Keys
+    echo '%{T9}%{F5c5f77} 󰌋 %{O-10}%{F-}%{T-}'
 else
-    echo '%{T12}%{F009777} 󰣀 %{F-}%{T-}'
+    # Keys
+    echo '%{T9}%{F179299} 󰌋 %{O-10}%{F-}%{T-}'
 fi

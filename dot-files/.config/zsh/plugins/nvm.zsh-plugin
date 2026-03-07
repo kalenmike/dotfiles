@@ -1,9 +1,10 @@
 lazynvm() {
+  [[ $- != *i* ]] && return
   # only source nvm once
   if [[ -z "${_NVM_LOADED-}" ]]; then
     export NVM_DIR="${XDG_CONFIG_HOME:-$HOME/.nvm}"
     [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-    _NVM_LOADED=1
+    export _NVM_LOADED=1
   fi
 }
 

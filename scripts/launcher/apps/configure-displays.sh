@@ -4,14 +4,32 @@
 # Author: Kalen Michael
 # Configures the display in i3 depending on the connected monitors
 
-# Get HDMI Connection status (connected | disconnected)
-HDMI_STATUS=$(xrandr | grep HDMI-0 | tr -s " " | cut -d ' ' -f 2)
+# Wait until XRandR is ready and HDMI-0 exists
+for i in {1..50}; do
+    if xrandr | grep -q "^HDMI-0 connected"; then
+        HDMI_READY=1
+        break
+    fi
+    sleep 0.1
+done
 
-if [ "$HDMI_STATUS" == "connected" ]; then
+# Get HDMI Connection status (connected | disconnected)
+# HDMI_STATUS=$(xrandr | grep HDMI-0 | tr -s " " | cut -d ' ' -f 2)
+
+# if [ "$HDMI_STATUS" == "connected" ]; then
+if [ "$HDMI_READY" = "1" ]; then
     # HDMI is connected and the res is set to onboard only
     echo "External monitor connected. Applying dual monitor config..."
     # Apply config for my Samsung monitor on the left at 2k
-    xrandr --dpi 100 --output HDMI-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output eDP-1-1 --mode 1920x1080 --pos 2560x180 --rotate normal --output HDMI-1-1 --off
+    # xrandr --dpi 100 --output HDMI-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output eDP-1-1 --mode 1920x1080 --pos 2560x180 --rotate normal --output HDMI-1-1 --off
+    xrandr \
+        --output HDMI-0 --mode 3840x2160 --pos 0x0 --rotate normal \
+        --output DP-0 --primary --mode 3840x2160 --pos 3840x0 --rotate normal \
+        --output DP-1 --off \
+        --output DP-2 --off \
+        --output DP-3 --off \
+        --output DP-4 --off \
+        --output DP-5 --off
 else
     # Enable all disabled displays with default config
     echo 'Unknown. Applying auto config...'

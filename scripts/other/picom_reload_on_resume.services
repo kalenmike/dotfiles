@@ -1,0 +1,13 @@
+[Unit]
+Description=Reload i3 on resume to prevent invisible windows
+After=suspend.target
+
+[Service]
+Type=oneshot
+ExecStart=i3-msg restart
+User=jet
+Environment="DISPLAY=:0"  # Ensure DISPLAY variable is set
+Environment="XAUTHORITY=/home/jet/.Xauthority"  # Ensure XAUTHORITY is set
+
+[Install]
+WantedBy=suspend.target

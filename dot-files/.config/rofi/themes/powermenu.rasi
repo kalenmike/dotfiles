@@ -8,11 +8,11 @@ configuration {
     sidebar-mode: false;
 }
 
-@import "~/.config/rofi/themes/rose-pine.rasi"
+@import "~/.config/rofi/themes/colors.rasi"
 
 window {
     transparency: "real";
-    background-color: @bg;
+    background-color: @bg-dark;
     text-color: @fg;
     border: @border-width;
     border-color: @secondary;
@@ -41,7 +41,7 @@ mainbox {
 }
 
 element {
-    background-color: @bg;
+    background-color: @transparent;
     text-color: @fg;
     orientation: vertical;
     border-radius: 0%;

@@ -1,0 +1,35 @@
+conky.config = {
+	background = true,
+	update_interval = 600,
+
+	double_buffer = true,
+	no_buffers = true,
+	alignment = 'top_left',
+	gap_x = 30,
+	gap_y = 100,
+	minimum_width = 550, minimum_height = 150,
+	maximum_width = 1920,
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+
+	xinerama_head = 1,
+
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+	default_shade_color = '#112422',
+
+	use_xft = true,
+	font = 'Feena Casual:size=10',
+	xftalpha = 1,
+
+};
+
+conky.text = [[
+${color whIte}${execpi 600 ~/Projects/linux/scripts/launcher/apps/cmd-reminders.sh}
+]]

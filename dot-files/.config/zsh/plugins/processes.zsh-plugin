@@ -6,8 +6,8 @@ function psa(){
             grep_process="$grep_process ${@:2}"
         fi
         echo "Matching : '$grep_process'"
-
-        ps aux | grep "$grep_process"
+        ps aux | head -n 1
+        ps aux | grep --color=auto "$grep_process"
     fi
 }
 

@@ -1,7 +1,7 @@
-#include ".Xtheme"
+!! #include ".Xtheme"
 
 !! Xft
-Xft.dpi:                    96
+Xft.dpi:                    152
 Xft.antialias:              1
 Xft.rgba:                   rgb
 Xft.autohint:               0
