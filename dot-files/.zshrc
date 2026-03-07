@@ -1,36 +1,97 @@
-zstyle :compinstall filename '/home/ace/.zshrc'
-zstyle ':completion:*' insert-tab false
-# Enable case insensitive completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-autoload -Uz compinit && compinit
+####################################################################
+#                         ZSH Configuration
+#                      -------------------------------------
+# This file contains my personl configuration for Zsh.
+# It is sourced when a new Zsh session starts.
+#
+# Section Order:
+# 1. Environment & PATH
+# 2. Completion System
+# 3. Keybindings
+# 4. Plugins
+# 5. Prompt Theme
+# 6. Aliases
+# 7. Functions
+# 8. Custom Hooks
+# 9. Startup Conditionals
+####################################################################
 
-#setopt MENU_COMPLETE
-
-# Add support for LS_COLORS
-export LS_COLORS="$(vivid generate ayu)"
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# Add keybindings for fzf
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-
-# Add zoxide
-# eval "$(zoxide init zsh)"
-
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
+# ============================================================
+# 1. Environment & PATH
+# ============================================================
 
 ZSH=~/.config/zsh
 ZSH_CACHE_DIR="$ZSH/cache"
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
-zsh_theme="zipper"
+export EDITOR="$HOME/.local/bin/nvim-editor"
+export VISUAL="$HOME/.local/bin/nvim-editor"
+
+# Go
+export PATH=$PATH:/usr/local/go/bin
+
+# Opencode
+export PATH=/home/jet/.opencode/bin:$PATH
+
+# Add support for LS_COLORS
+export LS_COLORS="$(vivid generate catppuccin-macchiato)"
+
+# uv - python manager
+# export UV_PYTHON="3.12"
+export PIP_REQUIRE_VIRTUALENV=true
+. "$HOME/.local/bin/env"
+eval "$(uv generate-shell-completion zsh)"
+
+# pnpm
+export PNPM_HOME="/home/jet/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+export PATH="$HOME/.pnpm-global/bin:$PATH"
+# pnpm end
+
+# Add zoxide
+# eval "$(zoxide init zsh)"
+
+# ============================================================
+# 2. Completion System
+# ============================================================
+
+zstyle :compinstall filename '/home/ace/.zshrc'
+zstyle ':completion:*' insert-tab false
+# Enable case insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+autoload -Uz compinit && compinit
+
+#setopt MENU_COMPLETE
+
+# ============================================================
+# 3. Keybindings
+# ============================================================
+
+# Edit Comand Buffer
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
+# Add vim style word jumping
+bindkey "^L" forward-word
+bindkey "^H" backward-word
+
+# Add keybindings for fzf
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+# ============================================================
+# 4. Plugins
+# ============================================================
 
 plugins=(
   history
   git
-  ultralytics
   zsh-syntax-highlighting
-  kubectl
   processes
   nvm
 )
@@ -40,54 +101,70 @@ for i in "${plugins[@]}";
     do source "$ZSH/plugins/$i.zsh-plugin"; 
 done
 
-# Load theme
-source "$ZSH/themes/$zsh_theme.zsh-theme"
+# ============================================================
+# 5. Prompt Theme
+# ============================================================
+# Running starship, check the end of this file
+# zsh_theme="zipper"
+# source "$ZSH/themes/$zsh_theme.zsh-theme"
 
-# Custom Aliases
-# --------------------------------------------------------------------
+# Catppuccin Macchiato colors for syntax highlighting
+# Valid command: Green (#a6da95)
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=#a6da95,bold'
+# Invalid command: Red (#ed8796)
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#ed8796,bold'
+# Bonus: Path highlighting (e.g., #8bd5ca - Teal)
+ZSH_HIGHLIGHT_STYLES[path]='fg=#8bd5ca,underline'
+
+# ============================================================
+# 6. Aliases
+# ============================================================
+# Navigation & File management
 alias ll='ls -lhF --color=always --group-directories-first | awk "{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\"\\033[0;0m%0o \\033[0;0m\",k);print}"'
 alias ls="ls -p --group-directories-first --color=always"
 alias c="clear && echo -ne \"\\033c\""
-alias python="python3" # Allow scripts to run python2 [system has python3]
-alias dupterm='nohup kitty >&/dev/null &' # Duplicate Terminal with Working Directory
-alias ducks="du -cks * | sort -rn | head" # Get 10 biggest files/folders
-alias ra="ranger"
-alias tree='find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"'
-alias chat="/home/ace/Projects/playground/chatgpt-cli/chat"
-alias v=nvim
+alias grep="grep --color=auto"
 alias f=fuzzy_dirs
 alias ff=fuzzy_files
+alias pysrv="uv run python -m http.server 8000"
+alias python="uv run python"
+alias pip="uv pip"
+alias diff="diff --color=always"
+
+# Print line numbers with empty lines
+alias nl="nl -ba"
+# Show visible folders sizes in order
+alias dush="du -sh * .* | sort -rh"
+
+# Clipboard shortcuts
+alias fip="xclip -selection clipboard"
+alias fop="xclip -o -selection clipboard"
+
+# Applications
+alias dupterm="(nohup kitty >&/dev/null &)"
+alias nv="lazynvm && nvim" # Requires nvm plugin
 alias bat=batcat
-alias bart="export BARTIB_FILE='/home/ace/Projects/activities.bartib' && bartib"
 alias ssh-add="ssh_add_overwrite"
-alias s="kitty +kitten ssh kalen@ssh.ultralytics.com"
-alias rbi="/home/ace/Projects/scripts/remove-bg-image.sh && /home/ace/Projects/scripts/launch/launch-bgimage.sh now"
 alias ch=cheat_sheet
 alias t="tmux_attach"
-alias m="math"
+alias bc="bc -l"
+alias opencode="firejail --profile=opencode --whitelist=$PWD opencode"
 
-# Custom Functions
-# --------------------------------------------------------------------
-function math(){
-    set -o noglob
-    echo $(( $@ ))
-    set +o noglob
-}
+# Config shortcuts
+alias zshrc="nv ~/.zshrc"
 
+# alias rbi="/home/ace/Projects/scripts/remove-bg-image.sh && /home/ace/Projects/scripts/launch/launch-bgimage.sh now"
+# alias chat="/home/ace/Projects/playground/chatgpt-cli/chat"
+# alias s="kitty +kitten ssh kalen@ssh.ultralytics.com"
 
-function restart-jobs(){
-    PREFIX=$1
-    kubectl get jobs --field-selector=status.successful=0 -o custom-columns=":metadata.name" | grep "^${PREFIX}" | awk '{print $1}' | xargs -I {} sh -c "kubectl get job {} -o json | jq 'del(.spec.selector)' |   jq 'del(.spec.template.metadata.labels)' | kubectl replace --force -f - >/dev/null; echo Restarted: {}"
-}
-
-function kube-connect() {
-    # Connect to pod by id
-    kubectl exec -it $1 -c app -- /bin/bash
-}
+# ============================================================
+# 7. Functions
+# ============================================================
 
 function fuzzy_dirs(){
     local dir
-    dir="$(find ~ -type d \( -name node_modules -o -name venv -o -name Trash \) -prune -o -type d | fzf --height 10 --query=$1)"
+    # dir="$(find ~ -type d \( -name node_modules -o -name venv -o -name Trash \) -prune -o -type d | fzf --height 10 --query="$*")"
+    dir=$(fd --type d --hidden --exclude .git --exclude .venv --exclude node_modules . ~ | fzf --height 10 --query="$*")
     if [ -n "$dir" ];then
         cd $dir
         echo Directory: $dir
@@ -96,7 +173,8 @@ function fuzzy_dirs(){
 
 function fuzzy_files(){
     local file
-    file="$(find ~ -type d \( -name node_modules -o -name venv -o -name Trash \) -prune -o -type f | fzf --preview 'batcat --color=always {}' --query="$1")"
+    # file="$(find ~ -type d \( -name node_modules -o -name venv -o -name Trash \) -prune -o -type f | fzf --preview 'batcat --color=always {}' --query="$*")"
+    file="$(fd --type f --hidden --exclude .git --exclude .venv --exclude node_modules . ~ | fzf --preview 'batcat --color=always {}' --query="$*")"
     if [ -n "$file" ];then
         cd $(dirname "$file")
         nvim $file
@@ -138,7 +216,37 @@ function tmux_attach(){
     fi
 }
 
-# Fix navigation
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
+# A helper for assembly
+# This will assemble and link in one go
+function asm_run() {
+    nasm -f elf64 "$1.asm" -o "$1.o" && ld "$1.o" -o "$1" && ./"$1"
+}
+
+# ============================================================
+# 8. Custom Hooks
+# ============================================================
+
+# Show directory contents on cd, but only if there 
+# are 100 or fewer items to prevent overwhelming the 
+# terminal.
+function chpwd() {
+  if [ $(ls -1 | wc -l) -le 100 ]; then
+    ls
+  else
+    echo "Directory is too large, skipping ls"
+  fi
+}
+
+# ============================================================
+# 9. Startup Conditionals
+# ============================================================
+
+# Kitty screensaver
+if [[ -n "$KITTY_WINDOW_ID" ]] && [[ -z "$CMATRIX_RAN" ]]; then
+    export CMATRIX_RAN=1
+    cmatrix
+fi
+
+export STARSHIP_CONFIG=~/.config/starship/km.toml
+eval "$(starship init zsh)"
 
