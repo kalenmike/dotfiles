@@ -96,6 +96,9 @@ vim.opt.cmdheight = 0 -- Minimal command line height
 vim.opt.mouse = "a" -- Enable mouse for all modes
 vim.opt.clipboard = "unnamedplus"
 
+-- Auto read the file for monitoring changes
+vim.opt.autoread = true
+
 -- =====================
 -- Spell Checking
 -- =====================
