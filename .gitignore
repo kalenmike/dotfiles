@@ -1,6 +1,6 @@
 lazy-lock.json
-dot-files/.config/nvim/lazy-lock.json
-dot-files/.config/tmux/plugins/
+common/config/nvim/lazy-lock.json
+common/config/tmux/plugins/
 *.log
 common/config/notey/db/clip.md
 common/config/notey/db/reminders.md

@@ -1,3 +1,6 @@
 [submodule "dot-files/.config/zsh/plugins/zsh-syntax-highlighting"]
 	path = dot-files/.config/zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "common/config/zsh/plugins/zsh-syntax-highlighting"]
+	path = common/config/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
