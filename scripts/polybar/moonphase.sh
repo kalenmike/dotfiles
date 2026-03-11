@@ -8,37 +8,37 @@ date_to_jdn() {
     local y m d
     read y m d <<<"${1//-/ }"
 
-    local a=$(( (14 - m) / 12 ))
-    y=$(( y + 4800 - a ))
-    m=$(( m + 12*a - 3 ))
+    local a=$(((14 - m) / 12))
+    y=$((y + 4800 - a))
+    m=$((m + 12 * a - 3))
 
-    echo $(( d + (153*m + 2)/5 + 365*y + y/4 - y/100 + y/400 - 32045 ))
+    echo $((10#$d + (153 * 10#$m + 2) / 5 + 365 * 10#$y + 10#$y / 4 - 10#$y / 100 + 10#$y / 400 - 32045))
 }
 
 jdn=$(date_to_jdn "$(date +%F)")
 
 # Days since known new moon
-days=$(( jdn - known_new_moon_jdn ))
+days=$((jdn - known_new_moon_jdn))
 
 # Length of synodic month in scaled integers
 # 29.530588 × 1000000
 cycle=29530588
 
 # Scale days into same unit
-age=$(( (days * 1000000) % cycle ))
+age=$(((days * 1000000) % cycle))
 
 # Convert to phase index (0–7)
-phase=$(( (age * 8) / cycle ))
+phase=$(((age * 8) / cycle))
 
 case $phase in
-    0) emoji="🌑" ;;
-    1) emoji="🌒" ;;
-    2) emoji="🌓" ;;
-    3) emoji="🌔" ;;
-    4) emoji="🌕" ;;
-    5) emoji="🌖" ;;
-    6) emoji="🌗" ;;
-    7) emoji="🌘" ;;
+0) emoji="🌑" ;;
+1) emoji="🌒" ;;
+2) emoji="🌓" ;;
+3) emoji="🌔" ;;
+4) emoji="🌕" ;;
+5) emoji="🌖" ;;
+6) emoji="🌗" ;;
+7) emoji="🌘" ;;
 esac
 
 echo "$emoji"

@@ -91,7 +91,7 @@ local function saveAndNotify()
   vim.cmd("w")
   vim.notify("File saved", vim.log.levels.INFO)
 end
-vim.keymap.set("n", "zz", saveAndNotify, { noremap = true, silent = true, desc = "Save file" })
+vim.keymap.set("n", "<C-s>", saveAndNotify, { noremap = true, silent = true, desc = "Save file" })
 
 -- Select entire file
 vim.keymap.set("n", "<leader>a", "ggVG", { noremap = true, silent = true, desc = "Select All" })

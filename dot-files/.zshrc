@@ -54,6 +54,10 @@ export PATH="$HOME/.pnpm-global/bin:$PATH"
 # Add zoxide
 # eval "$(zoxide init zsh)"
 
+# GPG and PAM
+export GPG_TTY=$(tty)
+export GPG_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent:0:1"
+
 # ============================================================
 # 2. Completion System
 # ============================================================

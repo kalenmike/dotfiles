@@ -4,7 +4,8 @@
 # Only works with `sudo visudo` escalation.
 # yourusername ALL=(ALL) NOPASSWD: /usr/sbin/ufw status
 #
-STATUS=$(sudo ufw status | grep -o "inactive" || echo "active")
+# STATUS=$(sudo ufw status | grep -o "inactive" || echo "active")
+STATUS=$(grep -q "ENABLED=yes" /etc/ufw/ufw.conf && echo "active" || echo "inactive")
 
 if [ "$STATUS" = "active" ]; then
     echo "%{T9}%{F179299}󰒘 %{F-}%{T-}"

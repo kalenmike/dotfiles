@@ -1,13 +1,13 @@
 !! #include ".Xtheme"
 
 !! Xft
-Xft.dpi:                    152
+Xft.dpi:                    144
 Xft.antialias:              1
 Xft.rgba:                   rgb
 Xft.autohint:               0
 Xft.hinting:                1
-Xft.hintstyle:              hintfull
-Xft.lcdfilter:              lcddefault
+Xft.hintstyle:              hintslight
+Xft.lcdfilter:              lcdnone
 
 !! Appearance
 URxvt.background:           [98]#1E1E2E

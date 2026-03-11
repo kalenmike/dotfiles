@@ -1,0 +1,12 @@
+# /etc/systemd/system/apply-tty-colors.service
+
+[Unit]
+Description=Apply custom TTY colors at boot
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/setvtrgb /home/jet/.tty_colors
+
+[Install]
+WantedBy=multi-user.target

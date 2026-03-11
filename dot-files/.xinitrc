@@ -10,4 +10,4 @@ sleep 1 && autorandr --change
 dunst &
 lxpolkit &
 
-exec dbus-launch --sh-syntax --exit-with-session i3
+exec dbus-launch --sh-syntax --exit-with-session i3 >~/.xsession-errors 2>&1

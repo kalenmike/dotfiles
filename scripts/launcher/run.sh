@@ -30,12 +30,12 @@ SCRIPT_DIR="$(dirname "$0")/apps"
 LOG_FILE="$SCRIPT_DIR/../launch.log"
 # App startup scripts to run
 SCRIPTS=(
-    "picom.sh"    # Transparency
-    "bgimage.sh"  # Background image
-    "bar.sh"      # Polybar
-    "conky.sh"    # Show date on desktop
-    "keyboard.sh" # Remap Keys
-    "autotile.py" # Enable auto tiling
+    "picom.sh"      # Transparency
+    "dynamic-bg.sh" # Background image
+    "bar.sh"        # Polybar
+    "conky.sh"      # Show date on desktop
+    "keyboard.sh"   # Remap Keys
+    "autotile.py"   # Enable auto tiling
 )
 
 log() {

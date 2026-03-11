@@ -43,7 +43,7 @@ end
 
 M.insert_template = function()
   local root = get_git_root()
-  local template_path = root .. "/Templates"
+  local template_path = root .. "/.system/templates"
 
   -- Verify the directory exists before proceeding
   if vim.fn.isdirectory(template_path) == 0 then
@@ -103,10 +103,85 @@ M.insert_template = function()
   })
 end
 
+-- Helper to extract 'type' from YAML frontmatter
+local function get_buffer_metadata_type()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, 10, false) -- Check top 10 lines
+  for _, line in ipairs(lines) do
+    local type_val = line:match("^type:%s+(%S+)")
+    if type_val then
+      return type_val
+    end
+  end
+  return nil
+end
+
+M.insert_tag = function()
+  local module_type = get_buffer_metadata_type()
+
+  vim.print(module_type)
+
+  if not module_type then
+    vim.notify("No 'type' found in buffer frontmatter", vim.log.levels.WARN)
+    return
+  end
+
+  local root = get_git_root()
+  local tag_file = root .. "/.system/tags/" .. module_type .. ".yaml"
+
+  -- Read and parse simple YAML (assuming a flat 'tags:' list)
+  local file = io.open(tag_file, "r")
+  if not file then
+    vim.notify("Tag file not found: " .. tag_file, vim.log.levels.ERROR)
+    return
+  end
+
+  local tags = {}
+  local in_tags_section = false
+  for line in file:lines() do
+    if line:match("^tags:") then
+      in_tags_section = true
+    elseif in_tags_section then
+      local tag = line:match("^%s+-%s+(%S+)")
+      if tag then
+        table.insert(tags, tag)
+      end
+      -- Stop if we hit a new top-level key
+      if line:match("^%S") and not line:match("^%s") then
+        in_tags_section = false
+      end
+    end
+  end
+  file:close()
+
+  -- Telescope Picker
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local conf = require("telescope.config").values
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+
+  pickers
+    .new({}, {
+      prompt_title = "Insert Tag for " .. module_type,
+      finder = finders.new_table({ results = tags }),
+      sorter = conf.generic_sorter({}),
+      attach_mappings = function(prompt_bufnr, map)
+        actions.select_default:replace(function()
+          actions.close(prompt_bufnr)
+          local selection = action_state.get_selected_entry()
+          -- Insert at cursor (adding '#' prefix)
+          vim.api.nvim_put({ " #" .. selection[1] }, "", false, true)
+        end)
+        return true
+      end,
+    })
+    :find()
+end
+
 M.show_backlinks = function()
   local filename = vim.fn.expand("%:t:r") -- Get note name without .md
   local current_file = vim.fn.expand("%:t") -- e.g., "Meeting-Notes.md"
-  local root = get_git_root() -- Using your existing git root helper
+  local root = get_git_root()
 
   -- Regex explanation:
   -- \\[ \\[      -> Literal "[["
@@ -254,6 +329,11 @@ vim.keymap.set("n", "<leader>ot", ":InsertTemplate<CR>", { desc = "Insert Templa
 vim.keymap.set("n", "<leader>ob", function()
   require("kalenmichael.template").show_backlinks()
 end, { desc = "Buffer Backlinks" })
+
+-- Search Backlinks using Telescope
+vim.keymap.set("n", "<leader>oit", function()
+  require("kalenmichael.template").insert_tag()
+end, { desc = "Insert Tag" })
 
 -- <leader>oo for "Outgoing"
 vim.keymap.set("n", "<leader>oo", function()
