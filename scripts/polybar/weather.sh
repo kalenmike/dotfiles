@@ -6,7 +6,14 @@ if ((BASH_VERSINFO[0] < 4)); then
     exit 1
 fi
 
-API_KEY=$(pass api/openweathermap | head -n 1)
+API_KEY=$(pass api/openweathermap 2>/dev/null | head -n 1)
+
+if [ -z "$API_KEY" ];
+    echo 🔒
+    exit 1
+fi
+
+
 LAT="39.4717207"
 LON="-0.3594883"
 ENDPOINT="https://api.openweathermap.org/data/2.5/weather"
