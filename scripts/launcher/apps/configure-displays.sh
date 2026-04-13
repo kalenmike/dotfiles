@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Date: 10/02/2023
+# Date: 13/04/2026
 # Author: Kalen Michael
 # Configures the display in i3 depending on the connected monitors
 
@@ -30,6 +30,8 @@ if [ "$HDMI_READY" = "1" ]; then
         --output DP-3 --off \
         --output DP-4 --off \
         --output DP-5 --off
+    # Force DPI to match X resources
+    xrandr --dpi 144
 else
     # Enable all disabled displays with default config
     echo 'Unknown. Applying auto config...'
