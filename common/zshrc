@@ -1,3 +1,5 @@
+# Added by ForgeCode installer
+export PATH="/home/jet/.local/bin:$PATH"
 ####################################################################
 #                         ZSH Configuration
 #                      -------------------------------------
@@ -28,6 +30,7 @@ export EDITOR="$HOME/.local/bin/nvim-editor"
 export VISUAL="$HOME/.local/bin/nvim-editor"
 
 # Go
+export GOBIN=~/.local/bin
 export PATH=$PATH:/usr/local/go/bin
 
 # Opencode
@@ -56,7 +59,6 @@ export PATH="$HOME/.pnpm-global/bin:$PATH"
 
 # GPG and PAM
 export GPG_TTY=$(tty)
-export GPG_AGENT_INFO="${HOME}/.gnupg/S.gpg-agent:0:1"
 
 # ============================================================
 # 2. Completion System
@@ -67,6 +69,9 @@ zstyle ':completion:*' insert-tab false
 # Enable case insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Load custom completions
+fpath=(~/.config/zsh/completions $fpath)
 
 autoload -Uz compinit && compinit
 
@@ -130,6 +135,7 @@ alias c="clear && echo -ne \"\\033c\""
 alias grep="grep --color=auto"
 alias f=fuzzy_dirs
 alias ff=fuzzy_files
+alias cdf='cd $(/bin/ls -d */ | fzf --height 9)'
 alias pysrv="uv run python -m http.server 8000"
 alias python="uv run python"
 alias pip="uv pip"
@@ -152,7 +158,8 @@ alias ssh-add="ssh_add_overwrite"
 alias ch=cheat_sheet
 alias t="tmux_attach"
 alias bc="bc -l"
-alias opencode="firejail --profile=opencode --whitelist=$PWD opencode"
+alias opencode='GOOGLE_API_KEY=$(pass api/google-ai) OPENROUTER_API_KEY=$(pass api/openrouter) firejail --profile=opencode --whitelist="$(pwd)" opencode'
+alias sp="spotify_player"
 
 # Config shortcuts
 alias zshrc="nv ~/.zshrc"
