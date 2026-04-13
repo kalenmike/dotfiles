@@ -161,6 +161,8 @@ alias bc="bc -l"
 alias opencode='GOOGLE_API_KEY=$(pass api/google-ai) OPENROUTER_API_KEY=$(pass api/openrouter) firejail --profile=opencode --whitelist="$(pwd)" opencode'
 alias sp="spotify_player"
 
+alias rm="trash"
+
 # Config shortcuts
 alias zshrc="nv ~/.zshrc"
 
