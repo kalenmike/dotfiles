@@ -8,11 +8,10 @@ fi
 
 API_KEY=$(pass api/openweathermap 2>/dev/null | head -n 1)
 
-if [ -z "$API_KEY" ];
+if [ -z "$API_KEY" ]; then
     echo 🔒
     exit 1
 fi
-
 
 LAT="39.4717207"
 LON="-0.3594883"
