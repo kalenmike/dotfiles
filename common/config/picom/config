@@ -11,7 +11,7 @@ backend = "glx";
 vsync = true;
 
 # Automatically track screen damage for efficiency
-use-damage = true;
+use-damage = false;
 #
 # Use higher precision during rendering
 dithered-present = true;
