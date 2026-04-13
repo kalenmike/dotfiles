@@ -78,11 +78,27 @@ return {
       },
     })
 
+    --  Configure ESLint
+    vim.lsp.config("eslint", {
+      capabilities = caps,
+      settings = {
+        workingDirectories = { mode = "auto" },
+      },
+      -- on_attach = function(client, bufnr)
+      --   -- Optional: Fix all errors on save
+      --   vim.api.nvim_create_autocmd("BufWritePre", {
+      --     buffer = bufnr,
+      --     command = "EslintFixAll",
+      --   })
+      -- end,
+    })
+
     -- enable servers
     vim.lsp.enable({
       "ts_ls",
       "lua_ls",
       "vue_ls",
+      "eslint",
     })
 
     -- keymaps (replaces lsp_zero.on_attach)
