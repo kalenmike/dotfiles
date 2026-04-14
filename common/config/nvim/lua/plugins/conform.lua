@@ -9,6 +9,7 @@ return {
       vue = { "prettier" },
       sh = { "shfmt" },
       json = { "prettier" },
+      ["env"] = { "shfmt" },
     },
 
     formatters = {
@@ -22,6 +23,10 @@ return {
           "--indent-width",
           "2",
         },
+      },
+      shfmt = {
+        -- The "-p" flag makes it more compatible with POSIX shell/env files
+        prepend_args = { "-i", "2", "-p" },
       },
     },
     format_on_save = {
