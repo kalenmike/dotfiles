@@ -200,44 +200,36 @@ bindsym $mod+x exec $scriptPath/launcher/apps/rofi-favourites.sh
 # bindsym $mod+c exec $scriptPath/show-greenclip.sh
 
 # Assign Workspaces:
-assign [class="Slack"] $ws1
-#assign [class="firefox" instance="Navigator" window_type="normal" ] $ws2
-#assign [class="firefox" instance="Navigator" title="(?i)Firefox Private"] $ws9
-#for_window [class="firefox" instance="Navigator" title="(?i)Firefox Private"] move to workspace $ws9
-assign [class="VSCodium" window_type="normal"] $ws3
+assign [class="Brave-browser"] $ws1
+assign [class="firefox" instance="Navigator" window_type="normal" ] $ws2
 assign [class="Spotify"] $ws6
-for_window [class="Spotify"] move to workspace $ws6
-#assign [class="Steam"] $ws7
-assign [class="Postman" window_type="normal"] $ws8
-assign [class="^obs$" window_type="normal"] $ws1
 assign [class="dailyNotes"] $ws10
+assign [class="AI_Browser"] $ws9
 
 # Use xprop to find the class names
-for_window [class="Gnome-calculator"] floating enable
-for_window [class="Gnome-control-center"] floating enable 
+# Helper for floating windows
+for_window [class="^floatme$"] floating enable, resize set 1700px 900px, move position center
+for_window [class="dailyNotes"] floating enable, resize set 1300px 1300px, move position center
+
+for_window [window_role="pop-up"] floating enable, resize set 1300px 1300px, move position center
+
+# Fixed Workspaces
+for_window [class="Brave-browser"] move to workspace $ws1
+for_window [class="Spotify"] move to workspace $ws6
+for_window [workspace="1" class="Brave-browser" title="Developer Tools"] floating enable, resize set 800 600, move position center
+
 for_window [class="blueman-manager"] floating enable
 for_window [class="Tor Browser"] floating enable
 # Keep firefox picture in picture on top of all worksapces
 for_window [instance="Toolkit" class="Firefox"] sticky enable
-for_window [title="^floatme$"] floating enable
-for_window [title="^Stutterd$"] floating enable, move position center
-for_window [class="^floatme$"] floating enable, resize set 1700px 900px, move position center
 for_window [class="Pavucontrol"] floating enable, sticky enable
 for_window [class="Blueman-manager"] floating enable, sticky enable
 for_window [window_type="dialog"] sticky enable
 for_window [class="Ulauncher"] floating enable
-for_window [class="Clockify"] floating enable
-for_window [class="Plank"] floating enable, sticky enable
-for_window [class="Gpick"] floating enable, sticky enable
 for_window [class="Nvidia-settings"] floating enable, sticky enable
-for_window [class="xpad"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [class="Thunar" window_type="normal"] floating enable, resize set 1700px 900px
-for_window [class="Gedit" window_type="normal"] floating enable, resize set 900px 900px
-for_window [title="Event Tester"] floating enable
-for_window [class="thunderbird"] floating enable
 for_window [window_type="dialog" class="kdenlive"] floating enable, resize set 1200px 800px
-for_window [class="dailyNotes"] floating enable, resize set 1300px 1300px, move position center
 
 # Custom Scripts
 exec_always --no-startup-id $scriptPath/launcher/run.sh
