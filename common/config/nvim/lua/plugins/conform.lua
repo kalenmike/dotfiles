@@ -8,6 +8,7 @@ return {
       typescript = { "prettier" },
       vue = { "prettier" },
       sh = { "shfmt" },
+      json = { "prettier" },
     },
 
     formatters = {
