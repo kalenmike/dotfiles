@@ -1,100 +1,9 @@
+# -----------------------------------------
+#  Configuration
+# -----------------------------------------
+
 # Set leader as super
 set $mod Mod4
-
-set $scriptPath $HOME/Projects/linux/scripts
-
-# Hide the window title bar
-font pango:monospace 0
-
-# Reload the configuration file
-bindsym $mod+Shift+c reload
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# Exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -f 'UbuntuMono Nerd Font Mono' -m 'Ready to Log Out?' -B 'Yes, exit i3' 'i3-msg exit'"
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -e
-
-# NetworkManager tray
-exec --no-startup-id nm-applet
-
-# Audio controls
-#bindsym XF86AudioRaiseVolume exec --no-startup-id $scriptPath/notifications/volume.sh alsa up
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+ unmute
-#bindsym XF86AudioLowerVolume exec --no-startup-id $scriptPath/notifications/volume.sh alsa down
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%- unmute
-bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle
-#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
-# Use Mouse to change volume
-bindsym --whole-window button9 exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym --whole-window button8 exec --no-startup-id pactl set-sink-volume 0 -5%
-# Music controls
-bindsym XF86AudioPlay exec $scriptPath/toggle/toggle_music.sh
-bindsym XF86AudioPause exec playerctl -p spotify pause
-bindsym XF86AudioStop exec playerctl -p spotify stop && g810-led -k f9 ffffff
-bindsym XF86AudioNext exec playerctl -p spotify next
-bindsym XF86AudioPrev exec playerctl -p spotify previous
-
-# Brightness
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
-
-
-# Scratch Pad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
-
-# Mouse Specific
-# Use Mouse+$mod to drag floating windows
-floating_modifier $mod
-focus_follows_mouse no
-
-# Launch terminal
-bindsym $mod+Return exec kitty
-
-# Kill active container
-bindsym $mod+Shift+q kill
-
-# Application fuzzy search
-bindsym $mod+d exec rofi -show drun -dpi 152 -theme $HOME/.config/rofi/themes/launcher.rasi
-# Bookmarks fuzzy search
-bindsym $mod+b exec $scriptPath/firefox-bookmarks.sh -f $scriptPath/ff-bookmarks.txt
-
-# Change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# Move focused container
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# Split h = horizontal, v = vertical
-bindsym $mod+u split h
-bindsym $mod+i split v
-
-# Fullscreen active container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# Toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# Change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# Focus parent and/or child container
-bindsym $mod+a focus parent
-#bindsym $mod+d focus child
 
 # Define names for default workspaces.
 set $ws1 "1"
@@ -107,6 +16,34 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+# Hide the window title bar
+font pango:monospace 0
+
+# Gaps
+gaps outer 6
+gaps inner 6
+smart_gaps off
+smart_borders on
+
+# Custom Variables
+set $scriptPath $HOME/Projects/linux/scripts
+
+#Borders
+default_border pixel 0
+default_floating_border pixel 0
+
+#<colorclass> <border> <background> <text> <indicator> <child_border>
+client.focused #ebbcba #ebbcba #ffffff #ebbcba #ebbcba #ebbcba
+client.focused_inactive #1E1D23 #FF7DA3 #ffffff #1E1D23 #1E1D23
+client.unfocused #1E1D23 #686069 #ffffff #1E1D23 #1E1D23
+client.urgent #FF0000 #000000 #ffffff #000000 #00000
+client.placeholder #1E1D23 #1E1D23 #ffffff #1E1D23 #1E1D23
+#client.background #000000
+
+# -----------------------------------------
+#  Keybindings
+# -----------------------------------------
 
 # Switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -132,18 +69,89 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# Assign Workspaces:
-assign [class="Slack"] $ws1
-#assign [class="firefox" instance="Navigator" window_type="normal" ] $ws2
-#assign [class="firefox" instance="Navigator" title="(?i)Firefox Private"] $ws9
-#for_window [class="firefox" instance="Navigator" title="(?i)Firefox Private"] move to workspace $ws9
-assign [class="VSCodium" window_type="normal"] $ws3
-assign [class="Spotify"] $ws6
-for_window [class="Spotify"] move to workspace $ws6
-#assign [class="Steam"] $ws7
-assign [class="Postman" window_type="normal"] $ws8
-assign [class="^obs$" window_type="normal"] $ws1
-assign [class="dailyNotes"] $ws10
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move focused container
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Split h = horizontal, v = vertical
+bindsym $mod+u split h
+bindsym $mod+i split v
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Fullscreen active container
+bindsym $mod+f fullscreen toggle
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focus parent and/or child container
+bindsym $mod+a focus parent
+#bindsym $mod+d focus child
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# Exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -f 'UbuntuMono Nerd Font Mono' -m 'Ready to Log Out?' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -e
+
+# Audio controls
+#bindsym XF86AudioRaiseVolume exec --no-startup-id $scriptPath/notifications/volume.sh alsa up
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ +5%
+#bindsym XF86AudioLowerVolume exec --no-startup-id $scriptPath/notifications/volume.sh alsa down
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# Use Mouse to change volume
+bindsym --whole-window button9 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --whole-window button8 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+# Music controls
+bindsym XF86AudioPlay exec spotify_player playback play-pause
+bindsym XF86AudioPause exec spotify_player playback pause
+bindsym XF86AudioStop exec  spotify_player playback pause
+bindsym XF86AudioNext exec   spotify_player playback next
+bindsym XF86AudioPrev exec   spotify_player playback previous
+
+# Brightness
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+
+# Scratch Pad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Mouse Specific
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+focus_follows_mouse no
+
+# Launch terminal
+bindsym $mod+Return exec kitty
+
+# Kill active container
+bindsym $mod+Shift+q kill
+
+# Application fuzzy search
+bindsym $mod+d exec rofi -show drun -dpi 152 -theme $HOME/.config/rofi/themes/launcher.rasi
 
 # Resize window, mouse enabled
 mode "resize" {
@@ -165,8 +173,46 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Use xprop to find the class names
 
+# Custom bindings
+# To get the key code use xev
+
+#Move workspaces between monitors
+bindsym $mod+p move workspace to output right
+bindsym $mod+Escape exec $scriptPath/launcher/apps/i3lock.sh && systemctl suspend
+
+# Print screen
+bindsym Print exec flameshot full -p ~/Pictures/screenshots
+bindsym Shift+Print exec flameshot gui
+
+# Move mouse to next monitor
+bindsym $mod+Tab exec i3-msg focus output next
+# Add mod tab support between current and previous workspace
+#bindsym $mod+Tab workspace back_and_forth
+
+# App Switcher
+bindsym Mod1+Tab exec rofi -show window -theme $HOME/.config/rofi/themes/switcher.rasi -window-format "[{w}]  {c}  {t}"
+
+#Launch favourites
+bindsym $mod+x exec $scriptPath/launcher/apps/rofi-favourites.sh
+
+# Show clipboard
+# bindsym $mod+c exec $scriptPath/show-greenclip.sh
+
+# Assign Workspaces:
+assign [class="Slack"] $ws1
+#assign [class="firefox" instance="Navigator" window_type="normal" ] $ws2
+#assign [class="firefox" instance="Navigator" title="(?i)Firefox Private"] $ws9
+#for_window [class="firefox" instance="Navigator" title="(?i)Firefox Private"] move to workspace $ws9
+assign [class="VSCodium" window_type="normal"] $ws3
+assign [class="Spotify"] $ws6
+for_window [class="Spotify"] move to workspace $ws6
+#assign [class="Steam"] $ws7
+assign [class="Postman" window_type="normal"] $ws8
+assign [class="^obs$" window_type="normal"] $ws1
+assign [class="dailyNotes"] $ws10
+
+# Use xprop to find the class names
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Gnome-control-center"] floating enable 
 for_window [class="blueman-manager"] floating enable
@@ -193,54 +239,7 @@ for_window [class="thunderbird"] floating enable
 for_window [window_type="dialog" class="kdenlive"] floating enable, resize set 1200px 800px
 for_window [class="dailyNotes"] floating enable, resize set 1300px 1300px, move position center
 
-#Borders
-default_border pixel 0
-default_floating_border pixel 0
-# Old RED D10028 #ebbcba
-#<colorclass> <border> <background> <text> <indicator> <child_border>
-client.focused #ebbcba #ebbcba #ffffff #ebbcba #ebbcba #ebbcba
-client.focused_inactive #1E1D23 #FF7DA3 #ffffff #1E1D23 #1E1D23
-client.unfocused #1E1D23 #686069 #ffffff #1E1D23 #1E1D23
-client.urgent #FF0000 #000000 #ffffff #000000 #00000
-client.placeholder #1E1D23 #1E1D23 #ffffff #1E1D23 #1E1D23
-#client.background #000000
-
 # Custom Scripts
 exec_always --no-startup-id $scriptPath/launcher/run.sh
 #exec_always --no-startup-id /home/ace/Developer/bash/toggle-touchpad.sh disable
 #bindsym XF86TouchpadToggle exec /home/ace/Developer/bash/toggle-touchpad.sh toggle
-
-# Custom bindings
-# To get the key code use xev
-
-# Open a placeholder
-bindsym $mod+Shift+v exec i3-msg open
-
-#Move workspaces between monitors
-bindsym $mod+p move workspace to output right
-bindsym $mod+Escape exec $scriptPath/launcher/apps/i3lock.sh && systemctl suspend
-
-# Print screen
-bindsym Print exec flameshot full -p ~/Pictures/screenshots
-bindsym Shift+Print exec flameshot gui
-bindsym Control+Print exec $scriptPath/launcher/apps/scrot.sh
-
-#Add mod tab support between monitors
-bindsym $mod+Tab exec i3-msg focus output next
-# Add mod tab support between current and previous workspace
-#bindsym $mod+Tab workspace back_and_forth
-
-# App Switcher
-bindsym Mod1+Tab exec rofi -show window -theme $HOME/.config/rofi/themes/switcher.rasi -window-format "[{w}]  {c}  {t}"
-
-#Launch favourites
-bindsym $mod+x exec $scriptPath/launcher/apps/rofi-favourites.sh
-
-# Show clipboard
-# bindsym $mod+c exec $scriptPath/show-greenclip.sh
-
-# i3 Gaps
-gaps outer 6
-gaps inner 6
-smart_gaps off
-smart_borders on
