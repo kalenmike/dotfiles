@@ -103,7 +103,7 @@ vim.opt.autoread = true
 -- Spell Checking
 -- =====================
 vim.opt.spell = true
-vim.opt.spelllang = { "en_us" }
+vim.opt.spelllang = { "en_us", "es" }
 
 -- =====================
 -- Leader Key
