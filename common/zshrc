@@ -161,7 +161,7 @@ alias bc="bc -l"
 alias opencode='GOOGLE_API_KEY=$(pass api/google-ai) OPENROUTER_API_KEY=$(pass api/openrouter) firejail --profile=opencode --whitelist="$(pwd)" opencode'
 alias sp="spotify_player"
 alias lg="lazygit"
-
+alias dp="_doti_push"
 alias rm="rm -i"
 
 # Config shortcuts
@@ -174,7 +174,24 @@ alias zshrc="nv ~/.zshrc"
 # ============================================================
 # 7. Functions
 # ============================================================
+function _doti_push() {
+    local TARGET_DIR="$HOME/Projects/linux"
 
+    # Save current directory to return later
+    local CURRENT_DIR=$(pwd)
+
+    # Change to target directory
+    cd "$TARGET_DIR" || return
+
+    # Git sequence
+    git add .
+    # Uses first argument as message, or defaults to "quick update"
+    git commit -m "${1:-quick update}"
+    git push
+
+    # Go back to where you were
+    cd "$CURRENT_DIR"
+}
 function fuzzy_dirs(){
     local dir
     # dir="$(find ~ -type d \( -name node_modules -o -name venv -o -name Trash \) -prune -o -type d | fzf --height 10 --query="$*")"
