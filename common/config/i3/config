@@ -209,7 +209,7 @@ assign [class="AI_Browser"] $ws9
 # Use xprop to find the class names
 # Helper for floating windows
 for_window [class="^floatme$"] floating enable, resize set 1700px 900px, move position center
-for_window [class="dailyNotes"] floating enable, resize set 1300px 1300px, move position center
+for_window [class="dailyNotes"] move container to workspace current, floating enable, resize set 1300px 1300px, move position center
 
 for_window [window_role="pop-up"] floating enable, resize set 1300px 1300px, move position center
 
