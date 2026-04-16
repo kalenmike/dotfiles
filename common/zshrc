@@ -158,7 +158,7 @@ alias ssh-add="ssh_add_overwrite"
 alias ch=cheat_sheet
 alias t="tmux_attach"
 alias bc="bc -l"
-alias opencode='GOOGLE_API_KEY=$(pass api/google-ai) OPENROUTER_API_KEY=$(pass api/openrouter) firejail --profile=opencode --whitelist="$(pwd)" opencode'
+alias opencode='source ~/.nvm/nvm.sh && GOOGLE_API_KEY=$(pass api/google-ai) OPENROUTER_API_KEY=$(pass api/openrouter) firejail --profile=opencode --whitelist="$(pwd)" opencode'
 alias sp="spotify_player"
 alias lg="lazygit"
 alias dp="_doti_push"

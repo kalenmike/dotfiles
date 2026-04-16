@@ -1,11 +1,14 @@
 return {
   "stevearc/conform.nvim",
   event = "BufWritePre",
+  cmd = "ConformInfo",
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
       javascript = { "prettier" },
       typescript = { "prettier" },
+      javascriptreact = { "prettier" },
+      typescriptreact = { "prettier" },
       vue = { "prettier" },
       sh = { "shfmt" },
       json = { "prettier" },
@@ -13,6 +16,12 @@ return {
     },
 
     formatters = {
+      prettier = {
+        -- This forces Prettier to use the config file and defines the search path
+        args = { "--stdin-filepath", "$FILENAME" },
+        -- This ensures it doesn't run if no config is found (optional safety)
+        require_cwd = true,
+      },
       stylua = {
         args = {
           "-", -- read from stdin

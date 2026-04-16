@@ -70,7 +70,7 @@ return {
 
     -- Vue (After ts_ls)
     vim.lsp.config("vue_ls", {
-      filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact", "html" },
+      filetypes = { "vue" },
       capabilities = caps,
       emmet = {
         showExpandedAbbreviation = "always",
