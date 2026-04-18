@@ -16,6 +16,39 @@ npx create-next-app@latest "$PROJECT_NAME" --typescript --tailwind --eslint --ap
 
 cd "$PROJECT_NAME" || exit
 
+echo "🧹 Gutting the template site..."
+
+# 1. Reset the global CSS to just Tailwind directives
+cat <<EOF >src/app/globals.css
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: white;
+}
+EOF
+
+# 2. Create a clean, empty root page
+cat <<EOF >src/app/page.tsx
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <h1 className="text-4xl font-bold">Project Ready</h1>
+      <p className="mt-4 text-muted-foreground">Lets Get Building</p>
+    </main>
+  )
+}
+EOF
+
+# 3. Delete the default favicon and public assets if you want a total fresh start
+rm -f public/next.svg public/vercel.svg public/file.svg public/globe.svg public/window.svg
+
 # 2. Install Dependencies
 echo "📦 Installing Prettier, Husky, and lint-staged..."
 pnpm add -D husky lint-staged prettier eslint-config-prettier
@@ -59,6 +92,33 @@ echo "Checking build before push..."
 pnpm build
 EOF
 chmod +x .husky/pre-push
+
+echo "⌨️ Adding type-check scripts..."
+
+# We use 'tsc --noEmit' for type checking.
+# We also create a 'check' command that runs both linting and typing.
+cat <<EOF >scripts-patch.json
+{
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start --port 4000",
+  "lint": "next lint",
+  "type-check": "tsc --noEmit",
+  "typecheck": "pnpm type-check",
+  "check": "pnpm lint && pnpm type-check",
+  "prepare": "husky"
+}
+EOF
+
+# Use node to merge the scripts back into package.json safely
+node -e "
+const fs = require('fs');
+const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+const newScripts = JSON.parse(fs.readFileSync('scripts-patch.json', 'utf8'));
+pkg.scripts = { ...pkg.scripts, ...newScripts };
+fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+"
+rm scripts-patch.json
 
 # 3. Overwrite ESLint with specific rules
 # Next.js 15+ uses the new Flat Config (eslint.config.mjs)
@@ -118,6 +178,27 @@ node_modules/
 .pnpm-store/
 *.tsbuildinfo
 EOF
+
+# Update README with a "Project Map" for Agent Context
+cat <<EOF >README.md
+# ${PROJECT_NAME}
+
+## 🏗 Project Map
+- \`src/app\`: Routing & Server components.
+- \`src/components\`: UI & Feature components.
+- \`src/lib\`: Shared utilities.
+- \`src/hooks\`: React hooks.
+
+## 🛠 Commands
+- \`pnpm dev\`: Run with Turbopack.
+- \`pnpm build\`: Production build & Type check.
+EOF
+
+echo "🎬 Reseting Git repository..."
+rm -rf .git
+git init >/dev/null
+git add . >/dev/null
+git commit -m "chore: initial setup" >/dev/null
 
 echo "✅ Project $PROJECT_NAME is ready!"
 echo "Next steps: cd $PROJECT_NAME && pnpm dev"
