@@ -181,7 +181,7 @@ function _doti_push() {
     local CURRENT_DIR=$(pwd)
 
     # Change to target directory
-    cd "$TARGET_DIR" || return
+    SKIP_LS=1 cd "$TARGET_DIR" || return
 
     # Git sequence
     git add .
@@ -190,7 +190,7 @@ function _doti_push() {
     git push
 
     # Go back to where you were
-    cd "$CURRENT_DIR"
+    SKIP_LS=1 cd "$CURRENT_DIR"
 }
 function fuzzy_dirs(){
     local dir
@@ -261,6 +261,12 @@ function asm_run() {
 # are 100 or fewer items to prevent overwhelming the 
 # terminal.
 function chpwd() {
+  # Allow skipping
+  if [[ -n "$SKIP_LS" ]]; then
+    unset SKIP_LS
+    return
+  fi
+
   if [ $(ls -1 | wc -l) -le 100 ]; then
     ls
   else
