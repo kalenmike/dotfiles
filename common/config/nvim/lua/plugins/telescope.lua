@@ -22,7 +22,9 @@ return {
 
     local builtin = require("telescope.builtin")
     local function project_files()
-      local opts = {}
+      local opts = {
+        initial_mode = "insert",
+      }
       local ok = pcall(require("telescope.builtin").git_files, opts)
       if not ok then
         require("telescope.builtin").find_files(opts)

@@ -23,6 +23,10 @@ return {
       filters = {
         dotfiles = true,
       },
+      update_focused_file = {
+        enable = true,
+        update_root = false, -- Keeps the tree root stable while highlighting the file
+      },
     })
   end,
 }
