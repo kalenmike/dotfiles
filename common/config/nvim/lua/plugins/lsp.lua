@@ -93,12 +93,37 @@ return {
       -- end,
     })
 
+    -- Define the configuration for pyright
+    vim.lsp.config("pyright", {
+      settings = {
+        python = {
+          -- Look for the python binary in the local .venv
+          -- 'uv' puts the binary at .venv/bin/python
+          pythonPath = (function()
+            local venv = vim.fn.getcwd() .. "/.venv/bin/python"
+            if vim.loop.fs_stat(venv) then
+              return venv
+            end
+            return "python3" -- fallback
+          end)(),
+          analysis = {
+            -- Tells Pyright that 'src' contains your modules
+            extraPaths = { "src" },
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            typeCheckingMode = "basic",
+          },
+        },
+      },
+    })
+
     -- enable servers
     vim.lsp.enable({
       "ts_ls",
       "lua_ls",
       "vue_ls",
       "eslint",
+      "pyright",
     })
 
     -- keymaps (replaces lsp_zero.on_attach)
