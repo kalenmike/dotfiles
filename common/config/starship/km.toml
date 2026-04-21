@@ -1,6 +1,6 @@
 # Use a two-line format
 format = """
-[╭──](dimmed surface2)$time[─](dimmed surface2)$directory$git_branch$git_status $jobs$cmd_duration
+[╭──](dimmed surface2)$time[─](dimmed surface2)$directory$git_branch$git_status${custom.nvm_icon} $jobs$cmd_duration
 [╰─](dimmed surface2)$character """
 
 palette = 'catppuccin_macchiato'
@@ -48,6 +48,13 @@ home_symbol = "~"
 truncation_length = 2
 truncation_symbol = "../"
 format = "[](surface0)[$path]($style)[](surface0)"
+
+[custom.nvm_icon]
+# This only cares about the variable, nothing else.
+command = "echo '󰎙'"
+when = 'test "$_NVM_LOADED" = "1"'
+style = "bold flamingo"
+format = "[─](dimmed surface2)[$output]($style)"
 
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
