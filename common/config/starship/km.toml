@@ -1,6 +1,6 @@
 # Use a two-line format
 format = """
-[╭──](dimmed surface2)$time[─](dimmed surface2)$directory$git_branch$git_status${custom.nvm_icon} $jobs$cmd_duration
+[╭──](dimmed surface2)$time[─](dimmed surface2)$hostname$directory$git_branch$git_status${custom.nvm_icon} $jobs$cmd_duration
 [╰─](dimmed surface2)$character """
 
 palette = 'catppuccin_macchiato'
@@ -55,6 +55,11 @@ command = "echo '󰎙'"
 when = 'test "$_NVM_LOADED" = "1"'
 style = "bold flamingo"
 format = "[─](dimmed surface2)[$output]($style)"
+
+[hostname]
+ssh_only = true
+format = "[](teal)[$hostname]($style)[](teal)[─](dimmed surface2)"
+style = "bold bg:teal fg:surface0"
 
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
