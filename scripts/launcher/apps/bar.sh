@@ -53,10 +53,19 @@ set -euo pipefail
 # Defaults (can be overridden via CLI arguments)
 # ---------------------------------------------------------------------------
 
-PRIMARY_MONITOR="DP-0"
+HOSTNAME=$(hostname -f)
 
-DEFAULT_PRIMARY_BAR="floating_primary"
-DEFAULT_SECONDARY_BAR="floating_secondary"
+if [ "$HOSTNAME" = "falcon" ];then
+    PRIMARY_MONITOR="eDP-1-1"
+
+    DEFAULT_PRIMARY_BAR="laptop_primary"
+    DEFAULT_SECONDARY_BAR="laptop_secondary"
+elif [ "$HOSTNAME" = "goose" ]; then
+    PRIMARY_MONITOR="DP-0"
+
+    DEFAULT_PRIMARY_BAR="floating_primary"
+    DEFAULT_SECONDARY_BAR="floating_secondary"
+fi
 
 PRIMARY_BAR="${1:-$DEFAULT_PRIMARY_BAR}"
 SECONDARY_BAR="${2:-$DEFAULT_SECONDARY_BAR}"
