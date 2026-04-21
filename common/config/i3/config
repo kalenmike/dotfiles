@@ -212,6 +212,7 @@ for_window [class="^floatme$"] floating enable, resize set 1700px 900px, move po
 for_window [class="dailyNotes"] move container to workspace current, floating enable, resize set 1300px 1300px, move position center
 
 for_window [window_role="pop-up"] floating enable, resize set 1300px 1300px, move position center
+for_window [window_type="notification"] floating enable
 
 # Fixed Workspaces
 for_window [class="Brave-browser"] move to workspace $ws1
