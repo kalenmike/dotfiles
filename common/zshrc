@@ -149,7 +149,7 @@ alias nl="nl -ba"
 alias dush="du -sh * .* | sort -rh"
 
 # Clipboard shortcuts
-alias fip="xclip -selection clipboard"
+# alias fip="xclip -selection clipboard"
 alias fop="xclip -o -selection clipboard"
 
 # Applications

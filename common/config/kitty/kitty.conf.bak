@@ -2457,9 +2457,3 @@ clipboard_control write-clipboard write-primary read-clipboard-ask read-primary-
 
 # Custom Theme
 include theme-catppuccin_macchiato.conf
-
-
-# BEGIN_KITTY_THEME
-# Catppuccin-Macchiato
-include current-theme.conf
-# END_KITTY_THEME
