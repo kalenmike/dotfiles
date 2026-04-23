@@ -1,0 +1,27 @@
+# Define the function
+ollama_bash_widget() {
+    # Get the current text in the command line
+    local user_query=$BUFFER
+
+    # If the line is empty, don't do anything
+    [[ -z "$user_query" ]] && return
+
+    # Clear the current buffer while we wait for Ollama
+    POSTDISPLAY="..."
+    zle redisplay
+
+    # Call your python script and capture the output
+    # IMPORTANT: Update the path to where your script is saved
+    local cmd=$(~/Projects/linux/scripts/bash-helper/bash-helper.sh "$user_query")
+
+    # Clear the line and replace it with the generated command
+    BUFFER="$cmd"
+    CURSOR=$#BUFFER
+    POSTDISPLAY=""
+}
+
+# Register the function as a ZLE (Zsh Line Editor) widget
+zle -N ollama_bash_widget
+
+# Bind it to a shortcut (e.g., Ctrl+G)
+bindkey '^G' ollama_bash_widget

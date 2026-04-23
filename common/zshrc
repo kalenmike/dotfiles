@@ -110,6 +110,9 @@ for i in "${plugins[@]}";
     do source "$ZSH/plugins/$i.zsh-plugin"; 
 done
 
+# LLM Bash helper
+source ~/Projects/linux/scripts/bash-helper/bash-helper.zsh-plugin
+
 # ============================================================
 # 5. Prompt Theme
 # ============================================================
