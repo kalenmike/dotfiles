@@ -125,3 +125,4 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.shortmess:append("I") -- Remove intro messages
 
 vim.g.copilot_enabled = false
+vim.lsp.inlay_hint.enable(true)

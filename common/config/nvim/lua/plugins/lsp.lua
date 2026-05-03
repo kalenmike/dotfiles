@@ -58,9 +58,55 @@ return {
     }
 
     -- TypeScript / JavaScript LSP
-    vim.lsp.config("ts_ls", {
+    -- vim.lsp.config("ts_ls", {
+    --   capabilities = caps,
+    --   filetypes = { "vue", "typescript", "typescriptreact", "javascript", "javascriptreact" },
+    --   init_options = {
+    --     plugins = {
+    --       vue_plugin,
+    --     },
+    --   },
+    -- })
+
+    -- Define the vtsls config
+    vim.lsp.config("vtsls", {
       capabilities = caps,
+      -- vtsls handles vue via its own plugin system or the hybrid mode
       filetypes = { "vue", "typescript", "typescriptreact", "javascript", "javascriptreact" },
+      settings = {
+        typescript = {
+          -- 1. FORCE TYPE EXPANSION
+          -- This tells the server to resolve types deeper so the LSP
+          -- is less likely to fallback to the alias name.
+          tsserver = {
+            maxTypeExtractionDepth = 50,
+          },
+          -- 2. PREFER EXPLICIT TYPES
+          preferences = {
+            useAliasToComplete = false, -- Suggests the raw type instead of alias
+          },
+          -- 3. VUE SUPPORT
+          -- Ensure the vtsls server knows how to handle .vue files
+          tplugin = {
+            vue = {
+              enabled = true,
+            },
+          },
+        },
+        vtsls = {
+          -- This helps with auto-imports and specialized TS features
+          autoUseWorkspaceTsdk = true,
+          experimental = {
+            completion = {
+              enableServerSideFuzzyMatch = true,
+            },
+            diagnostics = {
+              packageJsonChange = true,
+            },
+          },
+        },
+      },
+      -- If you still need the specific vue_plugin object you defined earlier
       init_options = {
         plugins = {
           vue_plugin,
@@ -135,7 +181,7 @@ return {
 
     -- enable servers
     vim.lsp.enable({
-      "ts_ls",
+      "vtsls",
       "lua_ls",
       "vue_ls",
       "eslint",

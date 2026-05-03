@@ -19,6 +19,7 @@ require("kalenmichael.remap")
 -- require("kalenmichael.welcome")
 require("kalenmichael.template")
 require("kalenmichael.filetypes")
+require("kalenmichael.helpers")
 
 local function wipe_all_registers()
   local registers = {
