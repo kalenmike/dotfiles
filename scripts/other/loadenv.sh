@@ -6,7 +6,23 @@
 # . loadenv unset       <- Clear secrets
 
 PROJECT_NAME=$(basename "$PWD")
-ENV_ARG=$1
+INPUT=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+
+case "$INPUT" in
+    d|dev)
+        ENV_ARG="development"
+        ;;
+    p|prod)
+        ENV_ARG="production"
+        ;;
+    s|stag)
+        ENV_ARG="staging"
+        ;;
+    *)
+        # If no match is found, return the original input
+        ENV_ARG="$1"
+        ;;
+esac
 
 safe_exit() {
     if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
@@ -71,8 +87,6 @@ if secrets=$(pass show "$PASS_PATH" 2>/dev/null); then
         unload_env > /dev/null
     fi
 
-    echo "Loading $ENV_ARG secrets for $PROJECT_NAME..."
-    
     # Parse and Export
     while IFS= read -r line; do
         # Ignore empty lines or comments
@@ -85,7 +99,7 @@ if secrets=$(pass show "$PASS_PATH" 2>/dev/null); then
     done <<< "$secrets"
 
     export CURRENT_ENV_ACTIVE="$ENV_ARG"
-    echo "Environment '$ENV_ARG' is now active."
+    echo -e "Environment [\e[38;5;110m$ENV_ARG\e[0m] is now active for \e[38;5;110m$PROJECT_NAME\e[0m."
 else
     echo "Error: Secrets for '$PROJECT_NAME' ($ENV_ARG) not found in pass."
     echo "Check: pass show $PASS_PATH"

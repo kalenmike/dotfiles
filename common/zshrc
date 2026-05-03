@@ -157,7 +157,7 @@ alias fop="xclip -o -selection clipboard"
 
 # Applications
 alias dupterm="(nohup kitty >&/dev/null &)"
-alias nv="lazynvm && nvim" # Requires nvm plugin
+alias nv="open_nvim_job" # Requires nvm plugin
 alias bat=batcat
 alias ssh-add="ssh_add_overwrite"
 alias ch=cheat_sheet
@@ -172,6 +172,8 @@ alias rm="rm -i"
 # Config shortcuts
 alias zshrc="nv ~/.zshrc"
 alias n="node -v"
+alias g="goose_tty"
+alias pd="pnpm dev"
 
 # alias rbi="/home/ace/Projects/scripts/remove-bg-image.sh && /home/ace/Projects/scripts/launch/launch-bgimage.sh now"
 # alias chat="/home/ace/Projects/playground/chatgpt-cli/chat"
@@ -180,6 +182,27 @@ alias n="node -v"
 # ============================================================
 # 7. Functions
 # ============================================================
+function open_nvim_job(){
+
+  # If has args open nvim
+  if [ $# -gt 0 ]; then
+    lazynvm && nvim "$@"
+    return
+  fi
+
+  # Check if there is a job containing 'nvim' in the current shell's background
+  local nvim_job=$(jobs | grep "nvim" | awk -F'[][]' '{print $2}')
+
+  if [[ -n "$nvim_job" ]]; then
+    # Bring the existing nvim job to the foreground
+    fg %"$nvim_job"
+  else
+    # No nvim job found, start a new one
+    # If arguments are passed (like a filename), use them
+    lazynvm && nvim "$@"
+  fi
+}
+
 function _doti_push() {
     local TARGET_DIR="$HOME/Projects/linux"
 

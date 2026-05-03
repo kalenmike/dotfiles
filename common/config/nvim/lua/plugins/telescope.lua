@@ -21,13 +21,26 @@ return {
     })
 
     local builtin = require("telescope.builtin")
+
     local function project_files()
+      -- Get the git root
+      local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+      local is_git = vim.v.shell_error == 0
+
       local opts = {
         initial_mode = "insert",
+        -- Respect .gitignore by default
+        hidden = false,
+        -- If you want to see hidden files (like .env) but NOT .git/
+        -- hidden = true,
+        -- file_ignore_patterns = { "%.git/", "node_modules/", "%.venv/", "pnpm%-lock.yaml" },
       }
-      local ok = pcall(require("telescope.builtin").git_files, opts)
-      if not ok then
-        require("telescope.builtin").find_files(opts)
+
+      if is_git then
+        opts.cwd = git_root
+        builtin.find_files(opts)
+      else
+        builtin.find_files(opts)
       end
     end
 

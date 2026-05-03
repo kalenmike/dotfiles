@@ -117,6 +117,22 @@ return {
       },
     })
 
+    -- Postgres Language Server
+    vim.lsp.config("postgres_lsp", {
+      root_markers = { ".git" },
+      settings = {
+        postgres = {
+          connections = {
+            {
+              -- Local Supabase Connection
+              uri = "postgresql://postgres:postgres@127.0.0.1:5432/postgres",
+              name = "local_supabase",
+            },
+          },
+        },
+      },
+    })
+
     -- enable servers
     vim.lsp.enable({
       "ts_ls",
@@ -124,6 +140,7 @@ return {
       "vue_ls",
       "eslint",
       "pyright",
+      "postgres_lsp",
     })
 
     -- keymaps (replaces lsp_zero.on_attach)
