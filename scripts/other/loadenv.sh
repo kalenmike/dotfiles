@@ -48,19 +48,10 @@ unload_env() {
 
     echo "Unloaded environment: [$CURRENT_ENV_ACTIVE]"
     unset CURRENT_ENV_ACTIVE
+    safe_exit 0
 }
 
-# --- 1. THE UNSET/CLEAR LOGIC ---
-if [ "$ENV_ARG" = "unset" ] || [ "$ENV_ARG" = "clear" ]; then
-    if [ -z "$CURRENT_ENV_ACTIVE" ]; then
-        echo "No environment is currently loaded."
-    else
-        unload_env
-    fi
-    safe_exit 0
-fi
-
-# --- 2. THE STATUS CHECK (No Args) ---
+# ---  THE STATUS CHECK (No Args) ---
 if [ -z "$ENV_ARG" ]; then
     if [ -z "$CURRENT_ENV_ACTIVE" ]; then
         echo "No environment currently loaded for $PROJECT_NAME."
@@ -75,7 +66,17 @@ fi
 if [[ "$0" == "${BASH_SOURCE[0]}" || "$0" == "$BASH_ARGV0" ]]; then
     echo "Error: This script must be sourced to modify your environment."
     echo "Usage: . loadenv $1 (Note the dot at the beginning)"
-    safe_exit 1
+    exit 1
+fi
+
+# ---  THE UNSET/CLEAR LOGIC ---
+if [ "$ENV_ARG" = "unset" ] || [ "$ENV_ARG" = "clear" ]; then
+    if [ -z "$CURRENT_ENV_ACTIVE" ]; then
+        echo "No environment is currently loaded."
+    else
+        unload_env
+    fi
+    return 0
 fi
 
 # --- 3. THE LOADING LOGIC ---

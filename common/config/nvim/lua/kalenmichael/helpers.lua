@@ -12,7 +12,6 @@ local function run_typecheck()
   -- Wait a moment for the check to finish or use an autocmd
   -- For a simpler setup, just trigger the Trouble toggle
   vim.cmd("redraw!")
-  vim.cmd("Trouble qflist open")
 
   -- 6. Final notification
   -- We check if the quickfix list is empty to give a success message
@@ -21,6 +20,7 @@ local function run_typecheck()
     vim.notify("Type-check passed! ✨", vim.log.levels.INFO, { title = "TypeScript" })
   else
     vim.notify("Type-check found " .. #qflist .. " errors.", vim.log.levels.WARN, { title = "TypeScript" })
+    vim.cmd("Trouble qflist open")
   end
 end
 
