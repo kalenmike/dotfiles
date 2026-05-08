@@ -51,11 +51,8 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-export PATH="$HOME/.pnpm-global/bin:$PATH"
 # pnpm end
 
-# Add zoxide
-# eval "$(zoxide init zsh)"
 
 # GPG and PAM
 export GPG_TTY=$(tty)
@@ -156,7 +153,6 @@ alias dush="du -sh * .* | sort -rh"
 alias fop="xclip -o -selection clipboard"
 
 # Applications
-alias dupterm="(nohup kitty >&/dev/null &)"
 alias nv="open_nvim_job" # Requires nvm plugin
 alias bat=batcat
 alias ssh-add="ssh_add_overwrite"
@@ -182,6 +178,15 @@ alias pd="pnpm dev"
 # ============================================================
 # 7. Functions
 # ============================================================
+dupterm() {
+  # Default to 1 if no argument is passed
+  local count=${1:-1}
+  
+  for i in {1..$count}; do
+    nohup kitty >&/dev/null &
+  done
+}
+
 function open_nvim_job(){
 
   # If has args open nvim
@@ -318,3 +323,6 @@ export LC_ALL=en_US.UTF-8
 export STARSHIP_CONFIG=~/.config/starship/km.toml
 eval "$(starship init zsh)"
 
+
+# Add zoxide
+eval "$(zoxide init zsh)"
