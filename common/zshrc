@@ -57,6 +57,10 @@ esac
 # GPG and PAM
 export GPG_TTY=$(tty)
 
+# Locale
+export LANG=en_US.UTF-8   # Keeps menus/spelling as US English
+export LC_TIME=en_GB.UTF-8 # Forces dates to DD/MM/YYYY
+
 # ============================================================
 # 2. Completion System
 # ============================================================
@@ -163,13 +167,19 @@ alias opencode='source ~/.nvm/nvm.sh && GOOGLE_API_KEY=$(pass api/google-ai) OPE
 alias sp="spotify_player"
 alias lg="lazygit"
 alias dp="_doti_push"
-alias rm="rm -i"
+alias rm="rm -I --preserve-root"
+alias cp='cp -i'
+alias mv='mv -i'
+alias update="sudo nala update && sudo nala upgrade"
+alias reload="source ~/.zshrc"
 
 # Config shortcuts
 alias zshrc="nv ~/.zshrc"
 alias n="node -v"
 alias g="goose_tty"
 alias pd="pnpm dev"
+
+alias supa="pnpm dlx tsx ~/Projects/linux/scripts/supabase/helper.ts"
 
 # alias rbi="/home/ace/Projects/scripts/remove-bg-image.sh && /home/ace/Projects/scripts/launch/launch-bgimage.sh now"
 # alias chat="/home/ace/Projects/playground/chatgpt-cli/chat"
@@ -178,13 +188,28 @@ alias pd="pnpm dev"
 # ============================================================
 # 7. Functions
 # ============================================================
-dupterm() {
+
+function npm() {
+  if [ "$1" = "install" ] || [ "$1" = "i" ] || [ "$1" = "add" ]; then
+    echo -e "\033[1;31m[ERROR] Direct 'npm install' is blocked on this system!\033[0m"
+    echo -e "Please use \033[1;32mpnpm install\033[0m instead."
+    return 1
+  else
+    command npm "$@"
+  fi
+}
+
+function dupterm() {
   # Default to 1 if no argument is passed
   local count=${1:-1}
   
   for i in {1..$count}; do
     nohup kitty >&/dev/null &
   done
+}
+
+function rembg() {
+    LD_LIBRARY_PATH="$HOME/.local/share/uv/tools/rembg/lib/python3.12/site-packages/nvidia/cublas/lib:$HOME/.local/share/uv/tools/rembg/lib/python3.12/site-packages/nvidia/cudnn/lib" command rembg "$@"
 }
 
 function open_nvim_job(){
@@ -285,6 +310,21 @@ function tmux_attach(){
 # This will assemble and link in one go
 function asm_run() {
     nasm -f elf64 "$1.asm" -o "$1.o" && ld "$1.o" -o "$1" && ./"$1"
+}
+
+
+function nn() {
+  if [ -z "$*" ]; then echo -e "Neuronet Notes\nUsage: nn <search-term>"; return 1; fi
+
+  local query="$*"
+  
+    rg --color=always --line-number --no-heading --smart-case "$query" ~/Neuronet | \
+    fzf --ansi \
+     --color "hl:-1:underline,hl+:-1:underline:bold" \
+     --delimiter : \
+     --preview 'bat --color=always --highlight-line {2} {1}' \
+     --preview-window 'up,60%,border-bottom,+{2}+3/3' \
+     | cut -d: -f1 | xargs -I {} nvim "{}"
 }
 
 # ============================================================

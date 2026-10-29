@@ -25,3 +25,40 @@ local function run_typecheck()
 end
 
 vim.keymap.set("n", "<leader>tc", run_typecheck, { desc = "Run Project Type-check" })
+
+vim.api.nvim_create_user_command("SpellToQf", function()
+  local items = {}
+  local filename = vim.api.nvim_buf_get_name(0)
+
+  for lnum = 1, vim.fn.line("$") do
+    local line = vim.fn.getline(lnum)
+    local col = 1
+    while true do
+      vim.fn.cursor(lnum, col)
+      local bw = vim.fn.spellbadword()
+      if bw[1] == "" then
+        break
+      end
+      local idx = string.find(line, bw[1], col)
+      if not idx then
+        break
+      end
+      table.insert(items, {
+        filename = filename,
+        lnum = lnum,
+        col = idx,
+        text = "Spelling error: " .. bw[1],
+      })
+      col = idx + string.len(bw[1])
+      if col > string.len(line) then
+        break
+      end
+    end
+  end
+  vim.fn.setqflist(items)
+  vim.cmd("copen")
+  print("Found " .. #items .. " spelling errors.")
+end, {})
+
+-- Optional keymap (e.g., <leader>cs for Check Spelling)
+vim.keymap.set("n", "<leader>cs", ":SpellToQf<CR>", { desc = "Send spelling errors to quickfix" })

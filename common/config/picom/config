@@ -41,7 +41,8 @@ inactive-opacity-override = false   # Respect app opacity, avoid forcing
 opacity-rule = [
     "100:class_g = 'Brave-browser'",
     "100:class_g = 'firefox'",
-    "100:class_g = 'Firefox'"
+    "100:class_g = 'Firefox'",
+    "100:class_g = 'obs'"
 ];
 
 #################################

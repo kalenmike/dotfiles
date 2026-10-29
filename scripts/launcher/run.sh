@@ -30,6 +30,7 @@ SCRIPT_DIR="$(dirname "$0")/apps"
 LOG_FILE="$SCRIPT_DIR/../launch.log"
 # App startup scripts to run
 SCRIPTS=(
+    "configure-displays.sh" # xrandr
     "picom.sh"      # Transparency
     "dynamic-bg.sh" # Background image
     "bar.sh"        # Polybar

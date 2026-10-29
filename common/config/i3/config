@@ -196,6 +196,9 @@ bindsym Mod1+Tab exec rofi -show window -theme $HOME/.config/rofi/themes/switche
 #Launch favourites
 bindsym $mod+x exec $scriptPath/launcher/apps/rofi-favourites.sh
 
+# Workspace switcher
+bindsym $mod+z exec $scriptPath/other/i3-workspaces.sh
+
 # Show clipboard
 # bindsym $mod+c exec $scriptPath/show-greenclip.sh
 
@@ -215,7 +218,7 @@ for_window [window_role="pop-up"] floating enable, resize set 1300px 1300px, mov
 for_window [window_type="notification"] floating enable
 
 # Fixed Workspaces
-for_window [class="Brave-browser"] move to workspace $ws1
+# for_window [class="Brave-browser"] move to workspace $ws1
 for_window [class="Spotify"] move to workspace $ws6
 for_window [workspace="1" class="Brave-browser" title="Developer Tools"] floating enable, resize set 800 600, move position center
 

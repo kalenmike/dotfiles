@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Date: 13/04/2026
+# Date: 29/08/2026
 # Author: Kalen Michael
 # Configures the display in i3 depending on the connected monitors
 
@@ -23,19 +23,19 @@ if [ "$HDMI_READY" = "1" ]; then
     # Apply config for my Samsung monitor on the left at 2k
     # xrandr --dpi 100 --output HDMI-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output eDP-1-1 --mode 1920x1080 --pos 2560x180 --rotate normal --output HDMI-1-1 --off
     xrandr \
+        --fb 7680x2160 \
         --output HDMI-0 --mode 3840x2160 --pos 0x0 --rotate normal \
         --output DP-0 --primary --mode 3840x2160 --pos 3840x0 --rotate normal \
         --output DP-1 --off \
         --output DP-2 --off \
         --output DP-3 --off \
         --output DP-4 --off \
-        --output DP-5 --off
-    # Force DPI to match X resources
-    xrandr --dpi 144
+        --output DP-5 --off \
+        --dpi 144
 else
     # Enable all disabled displays with default config
     echo 'Unknown. Applying auto config...'
-    xrandr --auto
+    xrandr --auto --dpi 144
 fi
 
 # Disable Screen blanking

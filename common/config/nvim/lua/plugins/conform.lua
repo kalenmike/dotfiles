@@ -13,6 +13,9 @@ return {
       sh = { "shfmt" },
       json = { "prettier" },
       ["env"] = { "shfmt" },
+      sql = { "pgformatter" },
+      markdown = { "prettier" },
+      ["markdown.mdx"] = { "prettier" },
     },
 
     formatters = {
@@ -20,7 +23,7 @@ return {
         -- This forces Prettier to use the config file and defines the search path
         args = { "--stdin-filepath", "$FILENAME" },
         -- This ensures it doesn't run if no config is found (optional safety)
-        require_cwd = true,
+        require_cwd = false,
       },
       stylua = {
         args = {
@@ -36,6 +39,12 @@ return {
       shfmt = {
         -- The "-p" flag makes it more compatible with POSIX shell/env files
         prepend_args = { "-i", "2", "-p" },
+      },
+      pgformatter = {
+        -- Mason installs binaries here, so 'pg_format' will be available on your PATH
+        command = "pg_format",
+        -- Tell it to read from standard input and output to standard output
+        args = { "-" },
       },
     },
     format_on_save = {

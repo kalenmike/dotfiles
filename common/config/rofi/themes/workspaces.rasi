@@ -1,0 +1,84 @@
+/*
+ * Dedicated Workspace Switcher Theme
+ * Optimized for wide text and status clarity
+ */
+
+configuration {
+    show-icons: false; /* Icons usually clutter the window title view */
+    display-dmenu: "󱂬 ";
+}
+
+@import "~/.config/rofi/themes/colors.rasi"
+
+window {
+    transparency: "real";
+    background-color: @bg-light;
+    text-color: @fg;
+    border: @border-width;
+    border-color: @bg-dark;
+    border-radius: @radius;
+    width: 1000px;
+    location: center;
+}
+
+mainbox {
+    background-color: @bg-light;
+    children: [ inputbar, listview ];
+    spacing: 2%;
+    padding: 2% 1% 2% 1%;
+}
+
+inputbar {
+    children: [ prompt, entry ];
+    background-color: @bg-dark;
+    border-radius: @radius;
+    padding: 0.5%;
+}
+
+prompt {
+    background-color: @transparent;
+    text-color: @secondary;
+    font: "JetBrainsMono Nerd Font 20";
+    padding: 10px 20px;
+}
+
+entry {
+    background-color: @transparent;
+    text-color: @fg;
+    placeholder: "Filter workspaces...";
+    placeholder-color: @disabled;
+    vertical-align: 0.5;
+}
+
+listview {
+    background-color: @transparent;
+    columns: 1;    /* Changed to 1 to allow for the 100 char truncation */
+    lines: 10;     /* Fixed at 10 for your 10 workspaces */
+    spacing: 8px;
+    cycle: true;
+    dynamic: false;
+    layout: vertical;
+    fixed-height: true;
+}
+
+element {
+    background-color: @transparent;
+    text-color: @fg;
+    padding: 12px 15px;
+    border-radius: @radius;
+}
+
+element-text {
+    background-color: @transparent;
+    text-color: inherit;
+    /* This is critical for the Pango markup from the script to work */
+    markup: true; 
+    vertical-align: 0.5;
+}
+
+element selected {
+    background-color: @bg-dark;
+    text-color: @secondary;
+    border: 0px 0px 0px 0px; /* subtle accent border on the left */
+    border-color: @secondary;
+}
